@@ -1,0 +1,36 @@
+# ❄️ Ignora resultados de builds locales
+/result
+/result-*
+/.build/
+.build/
+
+# ❌ Ignora rutas del sistema Nix (¡nunca subas el /nix/store!)
+/nix/
+/nix/store/
+
+# 🧪 Ignora pruebas y archivos temporales
+*.log
+*.tmp
+*.bak
+*.swp
+*.lock
+.DS_Store
+
+# ⚙️ Herramientas comunes
+.direnv/
+.envrc
+.cache/
+node_modules/
+__pycache__/
+
+# 🔐 Archivos secretos (ajusta esto según tu flujo)
+secrets.age
+*.age
+*.gpg
+*.key
+*.pem
+
+# 🚀 Opcional: VSCode, JetBrains, etc
+.vscode/
+.idea/
+*.code-workspace
