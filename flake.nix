@@ -18,11 +18,11 @@
       myUsername = "ccaverotx";
     in {
       # Configuración del sistema
-      nixosConfigurations.nixhypr = lib.nixosSystem {
+      nixosConfigurations.desktop = lib.nixosSystem {
         inherit system;
 
         modules = [
-          ./hosts/nixhypr.nix
+          ./hosts/desktop
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
