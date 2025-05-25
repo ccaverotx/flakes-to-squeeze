@@ -44,7 +44,7 @@
     config.allowUnfree = true;
   };
   modules = [
-    ./users/${myUsername}.nix
+     ./modules/home
   ];
   extraSpecialArgs = {
     inherit myUsername;
