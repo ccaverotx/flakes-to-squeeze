@@ -26,5 +26,7 @@ in
     };
 
     qt = activeTheme.qt;
+
+    wayland.windowManager.hyprland.settings = activeTheme.hyprlandConfig or {};
   };
 }

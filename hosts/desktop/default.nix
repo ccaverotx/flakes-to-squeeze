@@ -1,13 +1,13 @@
 { config, pkgs, lib, impermanence, ... }:
 
 let
-  # Cargar directamente el tema activo
-  activeTheme = import ../../modules/home/desktop/wms/hyprland/themes/nord {
-    inherit config pkgs lib;
-  };
+  ## Cargar directamente el tema activo
+  #activeTheme = import ../../modules/home/desktop/wms/hyprland/themes/nord {
+  #  inherit config pkgs lib;
+  #};
 
-  cursorName = activeTheme.cursor.name;
-  cursorSize = toString activeTheme.cursor.size;
+  #cursorName = activeTheme.cursor.name;
+  #cursorSize = toString activeTheme.cursor.size;
 in
 {
   imports = [
@@ -22,10 +22,10 @@ in
 
   programs.hyprland.enable = true;
 
-  environment.sessionVariables = {
-    XCURSOR_THEME = "Nordzy-cursors-white";
-    XCURSOR_SIZE = "30";
-  };
+  # environment.sessionVariables = {
+  #   XCURSOR_THEME = "Nordzy-cursors-white";
+  #   XCURSOR_SIZE = "30";
+  # };
 
   services.displayManager.sddm = {
     enable = true;

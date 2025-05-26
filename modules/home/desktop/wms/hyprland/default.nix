@@ -38,10 +38,10 @@
 
       settings = {
         exec-once = [
+          "dbus-update-activation-environment --systemd --all"
           "nm-applet --indicator"
           "waybar"
           "mako"
-          "hyprctl setcursor default 30"
         ];
 
         general = {
@@ -51,13 +51,13 @@
           layout = "dwindle";
         };
 
-        decoration = {
-          blur = {
-            enabled = true;
-            size = 4;
-            passes = 2;
-          };
-        };
+        #decoration = {
+        #  blur = {
+        #    enabled = true;
+        #    size = 4;
+        #    passes = 2;
+        #  };
+        #};
 
         input.kb_layout = "us";
       };

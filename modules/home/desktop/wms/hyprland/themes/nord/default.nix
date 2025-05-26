@@ -59,8 +59,15 @@ in
       "col.active_border" = "rgb(${builtins.replaceStrings ["#"] [""] colors.base0D})";
       "col.inactive_border" = "rgb(${builtins.replaceStrings ["#"] [""] colors.base03})";
     };
+
     decoration = {
-      rounding = 5;
+      rounding = 15;
+
+      blur = {
+        enabled = true;
+        size = 4;
+        passes = 2;
+      };
     };
   };
 }
