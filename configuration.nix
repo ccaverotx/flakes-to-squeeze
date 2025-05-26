@@ -66,7 +66,7 @@
   #   isNormalUser = true;
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   #   packages = with pkgs; [
-  #     tree
+  #     treeexperimental-features = [ "nix-command" "flakes" ];
   #   ];
   # };
 
@@ -120,6 +120,7 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }

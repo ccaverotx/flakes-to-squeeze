@@ -3,7 +3,7 @@
   home.homeDirectory = "/home/ccaverotx";
   home.stateVersion = "24.05";
 
-  home.packages = [ pkgs.home-manager ];
+  home.packages = [ pkgs.home-manager pkgs.unzip ];
 
   imports = [
     ./programs/gui-apps/firefox
