@@ -1,4 +1,8 @@
 { config, pkgs, ... }: {
+  imports = [
+  ./hyprconf/bindings.nix
+  ./hyprconf/monitor.nix
+  ];
   home.packages = [
     (pkgs.writeShellScriptBin "hyprland" ''
       export HYPRLAND_CONFIG=${config.home.homeDirectory}/.config/hypr/hyprland.conf
@@ -21,24 +25,6 @@
     systemd.enable = true;
     systemd.variables = [ "--all" ];
     settings = {
-      monitor = [
-        "DP-2,1920x1200,0x-350,1,transform,1"
-        "DP-1,1920x1080,1200x0,1"
-      ];
-      workspace = [
-        "DP-1,1"
-        "DP-2,1"
-      ];
-      "$mod" = "alt";
-      bind = [
-        "$mod, RETURN, exec, kitty"
-        "$mod, F, exec, firefox"
-        "$mod, C, exec, code"
-        "$mod SHIFT, Return, exec, kitty --class=\"termfloat\""
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-      ];
       exec-once = [
         "dbus-update-activation-environment --systemd --all"
         "nm-applet --indicator"
