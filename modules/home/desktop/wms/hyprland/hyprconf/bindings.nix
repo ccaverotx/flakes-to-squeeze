@@ -3,6 +3,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "alt";
+    "$rmod" = "ctrl";
     bind = [
       "$mod, RETURN, exec, kitty"
       "$mod, F, exec, firefox"
@@ -14,10 +15,11 @@
       "$mod, 3, workspace, 3"
       "$mod, 4, workspace, 4"
       "$mod, 5, workspace, 5"
-      "$mod, 6, workspace, 6"
-      "$mod, 7, workspace, 7"
-      "$mod, 8, workspace, 8"
-      "$mod, 9, workspace, 9"
+      "$rmod, 1, workspace, 6"
+      "$rmod, 2, workspace, 7"
+      "$rmod, 3, workspace, 8"
+      "$rmod, 4, workspace, 9"
+      "$rmod, 5, workspace, 10"
 
     ];
   };

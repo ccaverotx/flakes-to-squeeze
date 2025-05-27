@@ -38,6 +38,8 @@
 
       settings = {
         exec-once = [
+          # TODO: hardcoded cursor
+          "hyprctl setcursor Nordzy-cursors-white 30"
           "dbus-update-activation-environment --systemd --all"
           "nm-applet --indicator"
           "waybar"

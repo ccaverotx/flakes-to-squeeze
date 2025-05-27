@@ -3,22 +3,11 @@
 let
   # Lista de monitores en orden lógico de izquierda a derecha
   monitors = [
-    { name = "DP-2"; width = 1920; height = 1200; transform = 1; }  # Vertical a la izquierda
+    { name = "DP-2"; width = 1920; height = 1200; transform = 9; }  # Vertical a la izquierda
     { name = "DP-1"; width = 1920; height = 1080; transform = 0; }  # Horizontal al frente
   ];
 
-  mapMonitors = lib.concatStringsSep "\n" (
-    lib.imap0 (i: monitor:
-      let
-        posX = if i == 0 then 0 else (builtins.elemAt monitors (i - 1)).width;
-        posY = if monitor.transform == 1 then "-350" else "0";
-        res = "${toString monitor.width}x${toString monitor.height}";
-        transformStr = if monitor.transform == 1 then ",transform,1" else "";
-      in
-        "monitor=${monitor.name},${res},${toString posX}x${posY},1${transformStr}"
-    ) monitors
-  );
-
+  # Solo mantener el cálculo de workspace → monitor
   mapMonitorsToWs = lib.concatStringsSep "\n" (
     builtins.genList (
       x: let
@@ -35,9 +24,9 @@ let
 
 in {
   wayland.windowManager.hyprland.extraConfig = ''
-    # Monitor setup
-    ${mapMonitors}
-
+    ### --- Monitor Layout ---
+    monitor=DP-2,1920x1200,0x0,1,transform,1
+    monitor=DP-1,1920x1080@180,1920x0,1
     # Workspace mapping
     ${mapMonitorsToWs}
   '';
