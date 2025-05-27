@@ -12,8 +12,10 @@ in
     home.packages = [
       activeTheme.cursor.package
     ];
-
+    
     home.pointerCursor = {
+      gtk.enable = true;
+      x11.enable = true;
       name = activeTheme.cursor.name;
       package = activeTheme.cursor.package;
       size = activeTheme.cursor.size or 24;

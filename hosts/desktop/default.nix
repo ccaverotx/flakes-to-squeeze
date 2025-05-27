@@ -22,10 +22,12 @@ in
 
   programs.hyprland.enable = true;
 
-  # environment.sessionVariables = {
-  #   XCURSOR_THEME = "Nordzy-cursors-white";
-  #   XCURSOR_SIZE = "30";
-  # };
+  #TODO: Find a way to improve this
+  #Needed: hyprctl setcursor Nordzy-cursors-white 30
+  environment.sessionVariables = {
+    XCURSOR_THEME = "Nordzy-cursors-white";
+    XCURSOR_SIZE = "30";
+  };
 
   services.displayManager.sddm = {
     enable = true;

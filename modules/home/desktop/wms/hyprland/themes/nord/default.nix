@@ -31,18 +31,19 @@ in
 
 
   gtk = {
-    #theme = {
-    #  name = "Nordic";
-    #  package = pkgs.nordic;
-    #};
-    #iconTheme = {
-    #  name = "Papirus-Dark";
-    #  package = pkgs.papirus-icon-theme;
-    #};
+    enable = true;
     cursorTheme = {
       name = "Nordzy-cursors-white";
       package = pkgs.nordzy-cursor-theme;
-      size = 30;
+    };
+  # Note the different syntax for gtk3 and gtk4
+    gtk3.extraConfig = {
+      "gtk-cursor-theme-name" = "Nordzy-cursors-white";
+    };
+    gtk4.extraConfig = {
+      Settings = ''
+      gtk-cursor-theme-name=Nordzy-cursors-white
+      '';
     };
   };
 

@@ -50,15 +50,7 @@
           border_size = 2;
           layout = "dwindle";
         };
-
-        #decoration = {
-        #  blur = {
-        #    enabled = true;
-        #    size = 4;
-        #    passes = 2;
-        #  };
-        #};
-
+        
         input.kb_layout = "us";
       };
     };
