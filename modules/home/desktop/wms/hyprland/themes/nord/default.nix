@@ -78,12 +78,28 @@ in
 
     decoration = {
       rounding = 4;
+      active_opacity = 0.95;
+      inactive_opacity = 0.85;
+      fullscreen_opacity = 1.0;
 
       blur = {
         enabled = true;
-        size = 4;
-        passes = 2;
+        size = 3;
+        passes = 1;
+        new_optimizations = true;
+        xray = true;
+        ignore_opacity = false;
       };
+
+      shadow = {
+        enabled = true;
+        range = 4;
+        render_power = 3;
+        ignore_window = true;
+        color = "0x1a1a1aee";
+      };
+      
+      dim_inactive = false;
     };
   };
 
