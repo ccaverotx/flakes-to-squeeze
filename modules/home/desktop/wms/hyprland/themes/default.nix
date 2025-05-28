@@ -12,7 +12,7 @@ in
     home.packages = [
       activeTheme.cursor.package
     ];
-    
+
     home.pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
@@ -30,5 +30,11 @@ in
     qt = activeTheme.qt;
 
     wayland.windowManager.hyprland.settings = activeTheme.hyprlandConfig or {};
+
+    programs.waybar = {
+      enable = true;
+      settings = [ activeTheme.waybarConfig ];
+      style = activeTheme.waybarStyle;
+    };
   };
 }

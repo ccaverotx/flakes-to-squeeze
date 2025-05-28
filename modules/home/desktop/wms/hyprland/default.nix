@@ -18,7 +18,7 @@
       (pkgs.writeShellScriptBin "hyprland" ''
         export HYPRLAND_CONFIG=${config.home.homeDirectory}/.config/hypr/hyprland.conf
         exec ${pkgs.hyprland}/bin/Hyprland
-      '')
+      '') 
       pkgs.waybar
       pkgs.rofi
       pkgs.mako

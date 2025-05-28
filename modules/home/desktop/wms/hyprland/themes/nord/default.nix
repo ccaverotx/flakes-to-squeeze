@@ -19,6 +19,9 @@ let
     base0E = "#A3BE8C";
     base0F = "#B48EAD";
   };
+
+  waybarTheme = import ./waybar { inherit config lib pkgs; };
+
 in
 {
   inherit colors;
@@ -29,20 +32,18 @@ in
     package = pkgs.nordzy-cursor-theme;
   };
 
-
   gtk = {
     enable = true;
     cursorTheme = {
       name = "Nordzy-cursors-white";
       package = pkgs.nordzy-cursor-theme;
     };
-  # Note the different syntax for gtk3 and gtk4
     gtk3.extraConfig = {
       "gtk-cursor-theme-name" = "Nordzy-cursors-white";
     };
     gtk4.extraConfig = {
       Settings = ''
-      gtk-cursor-theme-name=Nordzy-cursors-white
+        gtk-cursor-theme-name=Nordzy-cursors-white
       '';
     };
   };
@@ -57,12 +58,12 @@ in
 
   hyprlandConfig = {
     general = {
-      "col.active_border" = "rgb(${builtins.replaceStrings ["#"] [""] colors.base0D})";
+      "col.active_border" = "rgb(${builtins.replaceStrings ["#"] [""] colors.base0A})";
       "col.inactive_border" = "rgb(${builtins.replaceStrings ["#"] [""] colors.base03})";
     };
 
     decoration = {
-      rounding = 15;
+      rounding = 4;
 
       blur = {
         enabled = true;
@@ -71,4 +72,7 @@ in
       };
     };
   };
+
+  waybarConfig = waybarTheme.config.waybarConfig;
+  waybarStyle = waybarTheme.config.waybarStyle;
 }
