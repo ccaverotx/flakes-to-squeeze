@@ -22,6 +22,8 @@ let
 
   waybarTheme = import ./waybar { inherit config lib pkgs; };
   kitty = import ./kitty { inherit config pkgs lib; };
+  vscode = (import ./vscode { inherit config pkgs lib; }).vscode;
+
 
 in
 {
@@ -65,7 +67,7 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 
   hyprlandConfig = {
@@ -89,4 +91,7 @@ in
   waybarStyle = waybarTheme.config.waybarStyle;
 
   kitty = kitty;
+  
+  vscode = vscode;
+  
 }

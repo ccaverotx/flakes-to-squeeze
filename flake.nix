@@ -20,11 +20,12 @@
       # Configuración del sistema
       nixosConfigurations.desktop = lib.nixosSystem {
         inherit system;
-
         modules = [
           ./hosts/desktop
           home-manager.nixosModules.home-manager
+          
           {
+            home-manager.backupFileExtension = "backup";
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${myUsername} = import ./modules/home;
@@ -38,18 +39,18 @@
 
       ## Configuración Home Manager standalone (por si lo ejecutas directamente)
       homeConfigurations.${myUsername} = home-manager.lib.homeManagerConfiguration {
-  inherit (nixpkgs) lib;
-  pkgs = import nixpkgs {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
-  modules = [
-     ./modules/home
-  ];
-  extraSpecialArgs = {
-    inherit myUsername;
-  };
-};
+        inherit (nixpkgs) lib;
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        modules = [
+          ./modules/home
+        ];
+        extraSpecialArgs = {
+          inherit myUsername;
+        };
+      };
 
     };
 }
