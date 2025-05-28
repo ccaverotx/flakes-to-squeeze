@@ -5,15 +5,14 @@
     waybarConfig = {
       layer = "top";
       position = "top";
-      modules-left = [ "clock" "sway/language" "custom/scratchpad-indicator" "custom/pacman" "sway/mode" "idle_inhibitor" "custom/media" ];
-      modules-center = [ "sway/workspaces" ];
+      modules-left = [ "clock" "custom/scratchpad-indicator" "idle_inhibitor" "custom/media" ];
+      modules-center = [ "hyprland/workspaces" ];
       modules-right = [ "custom/cpugovernor" "cpu" "temperature" "custom/gpu" "pulseaudio" "bluetooth" "network" "tray" ];
 
-      "sway/workspaces" = {
-        disable-scroll = true;
-        all-outputs = true;
+      "hyprland/workspaces" = {
         format = "{icon}";
-        format-icons = {
+        on-click = "activate";
+        "format-icons" = {
           "1" = "<span color=\"#D8DEE9\"></span>";
           "2" = "<span color=\"#88C0D0\"></span>";
           "3" = "<span color=\"#A3BE8C\"></span>";
@@ -22,6 +21,7 @@
           focused = "";
           default = "";
         };
+        "sort-by-number" = true;
       };
 
       "sway/mode" = {
@@ -64,7 +64,7 @@
       };
 
       clock = {
-        format = "  {:%H:%M   %e %b}";
+        format = "  {:%H:%M:%S   %e %b}";
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         today-format = "<b>{}</b>";
         on-click = "gnome-calendar";

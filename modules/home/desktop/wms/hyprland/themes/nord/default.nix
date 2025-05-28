@@ -21,6 +21,7 @@ let
   };
 
   waybarTheme = import ./waybar { inherit config lib pkgs; };
+  kitty = import ./kitty { inherit config pkgs lib; };
 
 in
 {
@@ -34,26 +35,37 @@ in
 
   gtk = {
     enable = true;
+
+    theme = {
+      name = "Nordic";
+      package = pkgs.nordic;
+    };
+
     cursorTheme = {
       name = "Nordzy-cursors-white";
       package = pkgs.nordzy-cursor-theme;
+      size = 30;
     };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
     gtk3.extraConfig = {
-      "gtk-cursor-theme-name" = "Nordzy-cursors-white";
+      "gtk-application-prefer-dark-theme" = "true";
     };
+
     gtk4.extraConfig = {
       Settings = ''
-        gtk-cursor-theme-name=Nordzy-cursors-white
+        gtk-application-prefer-dark-theme=true
       '';
     };
   };
 
   qt = {
-    #platformTheme = "gtk";
-    #style = {
-    #  name = "Nordic";
-    #  package = pkgs.nordic;
-    #};
+    enable = true;
+    platformTheme = "gtk";
   };
 
   hyprlandConfig = {
@@ -75,4 +87,6 @@ in
 
   waybarConfig = waybarTheme.config.waybarConfig;
   waybarStyle = waybarTheme.config.waybarStyle;
+
+  kitty = kitty;
 }

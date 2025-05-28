@@ -11,6 +11,8 @@ in
   config = lib.mkIf (activeTheme != null) {
     home.packages = [
       activeTheme.cursor.package
+      activeTheme.gtk.theme.package
+      activeTheme.gtk.iconTheme.package
     ];
 
     home.pointerCursor = {
@@ -21,10 +23,24 @@ in
       size = activeTheme.cursor.size or 24;
     };
 
-    gtk.cursorTheme = {
-      name = activeTheme.gtk.cursorTheme.name;
-      package = activeTheme.gtk.cursorTheme.package;
-      size = activeTheme.gtk.cursorTheme.size;
+    gtk = {
+      enable = true;
+      
+      cursorTheme = {
+        name = activeTheme.gtk.cursorTheme.name;
+        package = activeTheme.gtk.cursorTheme.package;
+        size = activeTheme.gtk.cursorTheme.size;
+      };
+      theme = {
+        name = activeTheme.gtk.theme.name;
+        package = activeTheme.gtk.theme.package;
+      };
+      iconTheme = {
+        name = activeTheme.gtk.iconTheme.name;
+        package = activeTheme.gtk.iconTheme.package;
+      };
+      gtk3.extraConfig = activeTheme.gtk.gtk3.extraConfig or { };
+      gtk4.extraConfig = activeTheme.gtk.gtk4.extraConfig or { };
     };
 
     qt = activeTheme.qt;
@@ -36,5 +52,11 @@ in
       settings = [ activeTheme.waybarConfig ];
       style = activeTheme.waybarStyle;
     };
+
+    programs.kitty = {
+      enable = true;
+      extraConfig = activeTheme.kitty.theme.content;
+    };
+
   };
 }
