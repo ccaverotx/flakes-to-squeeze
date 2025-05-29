@@ -10,6 +10,8 @@
   bind = $mod SHIFT, RETURN, exec, kitty --class="termfloat"
   bind = $mod, F1, exec, firefox
   bind = $mod, C, exec, code
+  bind = $mod, D, exec, rofi -show drun
+
 
   # Workspaces
   bind = $mod, 1, workspace, 1

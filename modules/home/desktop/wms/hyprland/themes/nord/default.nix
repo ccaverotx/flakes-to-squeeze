@@ -23,12 +23,12 @@ let
   waybarTheme = import ./waybar { inherit config lib pkgs; };
   kitty = import ./kitty { inherit config pkgs lib; };
   vscode = (import ./vscode { inherit config pkgs lib; }).vscode;
-
+  rofi = import ./rofi/default.nix { inherit config pkgs lib; };
 
 in
 {
   inherit colors;
-
+  inherit rofi;
   cursor = {
     name = "Nordzy-cursors-white";
     size = 30;
@@ -109,5 +109,12 @@ in
   kitty = kitty;
   
   vscode = vscode;
+
+  #rofi = {
+  #  theme = {
+  #    content = builtins.readFile ./rofi/config.nix;
+  #  };
+  #};
+
   
 }

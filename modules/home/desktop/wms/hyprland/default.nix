@@ -20,7 +20,7 @@
         exec ${pkgs.hyprland}/bin/Hyprland
       '') 
       pkgs.waybar
-      pkgs.rofi
+      pkgs.rofi-wayland
       pkgs.mako
       pkgs.swww
       pkgs.grim

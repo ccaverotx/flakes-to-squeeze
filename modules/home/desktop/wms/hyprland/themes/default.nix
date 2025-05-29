@@ -65,5 +65,7 @@ in
         userSettings = activeTheme.vscode.settings;
       };
     };
+
+    xdg.configFile = (activeTheme.rofi or { }).xdg.configFile or {};
   };
 }
