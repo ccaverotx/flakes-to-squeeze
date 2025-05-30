@@ -14,6 +14,7 @@ in
     ../default.nix
     ../../modules/impermanence.nix
     ../../modules/hyprland.nix
+    ../../modules/security/lanzaboote.nix
     ../../modules/security/polkit.nix
     ../../hardware-configuration.nix
   ];
@@ -44,8 +45,10 @@ in
     pantheon.pantheon-agent-polkit
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  secureboot.enable = true;
+
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

@@ -9,6 +9,7 @@
       "/etc/nixos"
       "/etc/ssh"
       "/home"
+      "/var/lib/sbctl/"
       "/var/lib/bluetooth"
       "/var/lib/systemd"
       "/var/lib/nixos"

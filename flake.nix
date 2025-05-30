@@ -6,12 +6,17 @@
     flake-utils.url = "github:numtide/flake-utils";
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ## Asegura que home-manager use el mismo nixpkgs
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, impermanence, home-manager, ... }:
+  outputs = { self, nixpkgs, impermanence, home-manager, lanzaboote, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -21,6 +26,7 @@
       nixosConfigurations.desktop = lib.nixosSystem {
         inherit system;
         modules = [
+          lanzaboote.nixosModules.lanzaboote
           ./hosts/desktop
           home-manager.nixosModules.home-manager
           

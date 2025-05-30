@@ -23,7 +23,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    vim git wget pavucontrol
+    vim git wget pavucontrol sbctl niv
   ];
 
   system.stateVersion = "24.05";
