@@ -16,6 +16,7 @@ in
     ../../modules/hyprland.nix
     ../../modules/security/lanzaboote.nix
     ../../modules/security/polkit.nix
+    ../../modules/services/podman
     ../../hardware-configuration.nix
   ];
 
@@ -43,9 +44,12 @@ in
 
   environment.systemPackages = with pkgs; [
     pantheon.pantheon-agent-polkit
+    postgresql
   ];
 
   secureboot.enable = true;
+
+  virtualisation.podman.enable = true;
 
   #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;

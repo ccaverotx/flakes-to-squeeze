@@ -18,6 +18,7 @@
 
   imports = [
     ./programs/gui-apps/firefox
+    ./programs/gui-apps/dbeaver
     ./programs/gui-apps/vscode
     ./programs/gui-apps/kitty
     ./programs/gui-apps/nemo

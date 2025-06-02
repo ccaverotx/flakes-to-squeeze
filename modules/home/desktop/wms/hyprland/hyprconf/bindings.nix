@@ -89,6 +89,13 @@
 
   submap = reset
 
+  device {
+    name = logitech-usb-trackball
+    scroll_method = on_button_down
+    natural_scroll = true
+  }
+
+
 
 '';
 
