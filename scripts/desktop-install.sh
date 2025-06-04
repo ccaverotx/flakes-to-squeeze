@@ -11,15 +11,7 @@ export NIX_CONFIG="experimental-features = nix-command flakes"
 echo "🚨 Borrando completamente el disco $DISK (sin confirmación)..."
 wipefs -a "$DISK"
 
-echo "📁 Montando estructura en $FLAKE_PATH..."
-mkdir -p "$FLAKE_PATH"
-
-# Clona solo si no está presente
-if [ ! -d "$FLAKE_PATH/.git" ]; then
-  echo "🌱 Clonando flake de configuración..."
-  git clone https://github.com/ccaverotx/flakes-to-squeeze "$FLAKE_PATH"
-fi
-
+echo "📁 Usando flake en $FLAKE_PATH..."
 cd "$FLAKE_PATH"
 
 echo "🧱 Ejecutando disko-install para $FLAKE_ATTR..."
