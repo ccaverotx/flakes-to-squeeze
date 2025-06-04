@@ -6,9 +6,9 @@
   environment.persistence."/nix/persist" = {
     directories = [
       "/etc/polkit-1"
-      "/etc/nixos"
+      #"/etc/nixos"
       "/etc/ssh"
-      "/home"
+      #"/home"
       "/var/lib/sbctl/"
       "/var/lib/bluetooth"
       "/var/lib/systemd"

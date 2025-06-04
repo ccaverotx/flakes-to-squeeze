@@ -13,29 +13,29 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "none";
-      fsType = "tmpfs";
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/19af2d2b-b30b-419d-b952-ae54eba297fa";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A9A6-6106";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-
-  fileSystems."/etc/nixos" =
-    { device = "/nix/persist/etc/nixos";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
-  swapDevices = [ ];
+  #fileSystems."/" =
+  #  { device = "none";
+  #    fsType = "tmpfs";
+  #  };
+#
+  #fileSystems."/nix" =
+  #  { device = "/dev/disk/by-uuid/19af2d2b-b30b-419d-b952-ae54eba297fa";
+  #    fsType = "ext4";
+  #  };
+#
+  #fileSystems."/boot" =
+  #  { device = "/dev/disk/by-uuid/A9A6-6106";
+  #    fsType = "vfat";
+  #    options = [ "fmask=0022" "dmask=0022" ];
+  #  };
+#
+  #fileSystems."/etc/nixos" =
+  #  { device = "/nix/persist/etc/nixos";
+  #    fsType = "none";
+  #    options = [ "bind" ];
+  #  };
+#
+  #swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

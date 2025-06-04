@@ -9,6 +9,7 @@
     ../../modules/security/polkit.nix
     ../../modules/services/podman
     ../../hardware-configuration.nix
+    ../../hosts/desktop/disko.nix
   ];
 
   networking.hostName = "desktop";

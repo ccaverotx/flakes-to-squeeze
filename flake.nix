@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    disko.url = "github:nix-community/disko";
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
     lanzaboote = {
@@ -14,7 +15,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, impermanence, home-manager, lanzaboote, ... }:
+  outputs = { self, nixpkgs, impermanence, home-manager, lanzaboote, disko, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -36,7 +37,10 @@
             ];
           in
             commonModules ++
-              (if hostName == "desktop" then [ lanzaboote.nixosModules.lanzaboote ] else []);
+              (if hostName == "desktop" then [
+                lanzaboote.nixosModules.lanzaboote
+                disko.nixosModules.disko
+              ] else []);
         specialArgs = {
           inherit impermanence myUsername;
           hostType = hostName;
@@ -56,6 +60,18 @@
         };
         modules = [ ./modules/home ];
         extraSpecialArgs = { inherit myUsername; };
+      };
+
+      apps.${system} = {
+        disko-install-desktop = {
+          type = "app";
+          program = "${disko.packages.${system}.disko}/bin/disko-install --flake .#desktop";
+        };
+
+        nixos-install-desktop = {
+          type = "app";
+          program = "${nixpkgs.legacyPackages.${system}.nixos-install}/bin/nixos-install --flake .#desktop";
+        };
       };
     };
 }
