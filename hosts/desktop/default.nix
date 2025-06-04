@@ -1,14 +1,5 @@
 { config, pkgs, lib, impermanence, ... }:
 
-let
-  ## Cargar directamente el tema activo
-  #activeTheme = import ../../modules/home/desktop/wms/hyprland/themes/nord {
-  #  inherit config pkgs lib;
-  #};
-
-  #cursorName = activeTheme.cursor.name;
-  #cursorSize = toString activeTheme.cursor.size;
-in
 {
   imports = [
     ../default.nix
@@ -24,8 +15,6 @@ in
 
   programs.hyprland.enable = true;
 
-  #TODO: Find a way to improve this
-  #Needed: hyprctl setcursor Nordzy-cursors-white 30
   environment.sessionVariables = {
     XCURSOR_THEME = "Nordzy-cursors-white";
     XCURSOR_SIZE = "30";
@@ -40,8 +29,6 @@ in
 
   services.getty.autologinUser = "ccaverotx";
 
-  security.polkit.enable = true;
-
   environment.systemPackages = with pkgs; [
     pantheon.pantheon-agent-polkit
     postgresql
@@ -50,9 +37,7 @@ in
   secureboot.enable = true;
 
   virtualisation.podman.enable = true;
-
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
+
+#boot.loader.systemd-boot.enable = true;
+#boot.loader.efi.canTouchEfiVariables = true;
