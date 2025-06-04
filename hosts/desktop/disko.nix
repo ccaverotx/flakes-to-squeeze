@@ -4,15 +4,13 @@
   disko.devices = {
     disk.main = {
       type = "disk";
-      device = "/dev/nvme0n1";
-
+      # El valor de device se sobrescribe desde la CLI con --disk main /dev/nvme0n1
       content = {
         type = "gpt";
         partitions = {
           boot = {
-            name = "boot"; 
             size = "512M";
-            type = "EF00";
+            type = "EF00"; # EFI System Partition
             content = {
               type = "filesystem";
               format = "vfat";
@@ -21,7 +19,6 @@
           };
 
           nix = {
-            name = "nix";
             size = "100%";
             content = {
               type = "filesystem";
