@@ -65,12 +65,12 @@
       apps.${system} = {
         disko-install-desktop = {
           type = "app";
-          program = "${disko.packages.${system}.disko}/bin/disko-install --flake .#desktop";
+          program = "${disko.packages.${system}.disko}/bin/disko-install";
         };
-
+      
         nixos-install-desktop = {
           type = "app";
-          program = "${nixpkgs.legacyPackages.${system}.nixos-install}/bin/nixos-install --flake .#desktop";
+          program = "${nixpkgs.legacyPackages.${system}.nixos-install}/bin/nixos-install";
         };
       };
     };
