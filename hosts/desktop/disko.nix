@@ -84,6 +84,13 @@ in
           options.mountpoint = "legacy";
           options.canmmount = "off";
         };
+
+        "${pseudoRoot}/persist/etc-nixos" = {
+          type = "zfs_fs";
+          mountpoint = "/persist/etc-nixos";
+          options.mountpoint = "legacy";
+          options.canmmount = "off";
+        };
       };
     };
   };
