@@ -7,15 +7,15 @@
     disko.url = "github:nix-community/disko";
     impermanence.url = "github:nix-community/impermanence";
     home-manager.url = "github:nix-community/home-manager";
-    #lanzaboote = {
-    #  url = "github:nix-community/lanzaboote/v0.4.2";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, impermanence, home-manager, disko, ... }:
+  outputs = { self, nixpkgs, impermanence, home-manager, lanzaboote, disko, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -38,7 +38,7 @@
           in
             commonModules ++
               (if hostName == "desktop" then [
-                #lanzaboote.nixosModules.lanzaboote
+                lanzaboote.nixosModules.lanzaboote
                 disko.nixosModules.disko
               ] else []);
         specialArgs = {
