@@ -28,7 +28,7 @@
     wayland.enable = true;
   };
 
-  services.xserver.displayManager.defaultSession = "hyprland";
+  services.displayManager.defaultSession = "hyprland";
 
   services.getty.autologinUser = "ccaverotx";
 
