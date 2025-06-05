@@ -4,7 +4,7 @@
   disko.devices = {
     disk.main = {
       type = "disk";
-      # El valor de device se sobrescribe desde la CLI con --disk main /dev/nvme0n1
+      # El valor de `device` se pasa vía CLI: --disk main /dev/nvme0n1
       content = {
         type = "gpt";
         partitions = {
@@ -41,12 +41,24 @@
         fsType = "none";
         mountpoint = "/etc/nixos";
         mountOptions = [ "bind" ];
+        depends = [ "/nix" ];
+        source = "/nix/persist/etc/nixos";
       };
 
       home = {
         fsType = "none";
         mountpoint = "/home";
         mountOptions = [ "bind" ];
+        depends = [ "/nix" ];
+        source = "/nix/persist/home";
+      };
+
+      var-lib-nixos = {
+        fsType = "none";
+        mountpoint = "/var/lib/nixos";
+        mountOptions = [ "bind" ];
+        depends = [ "/nix" ];
+        source = "/nix/persist/var/lib/nixos";
       };
     };
   };
