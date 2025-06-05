@@ -11,9 +11,9 @@
       "/var/lib/bluetooth"
       "/var/lib/systemd"
       "/var/lib/nixos"
-      "/home/ccaverotx/.mozilla"
-      "/home/ccaverotx/.config"
-      "/home/ccaverotx/.local"
+      "/home/${config.myUsername}/.mozilla"
+      "/home/${config.myUsername}/.config"
+      "/home/${config.myUsername}/.local"
     ];
     files = [
       "/etc/machine-id"
