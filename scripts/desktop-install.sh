@@ -82,7 +82,7 @@ findmnt -n -o TARGET -R /mnt
 
 ### PASO 8.5: Clonar nuevamente el flake dentro de /mnt/etc/nixos ###
 echo "🔁 Re-clonando flake dentro de /mnt/etc/nixos para nixos-install..."
-rm -rf /mnt/etc/nixos/*
+rm -rf /mnt/etc/nixos/.??* /mnt/etc/nixos/* || true
 git clone "$REPO_URL" /mnt/etc/nixos
 
 ### PASO 9: Instalar NixOS ###
