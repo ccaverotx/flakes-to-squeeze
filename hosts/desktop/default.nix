@@ -44,4 +44,10 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  fileSystems."/etc/nixos" = {
+    device = "zroot/nixos/persist/etc-nixos";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 }
