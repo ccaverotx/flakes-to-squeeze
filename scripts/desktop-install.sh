@@ -90,4 +90,11 @@ echo "🛠️ Ejecutando nixos-install para $FLAKE_ATTR..."
 cd /mnt/etc/nixos
 nix run .#nixos-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR"
 
+### PASO 10: Asegurar perfil del sistema y rebuild switch final ###
+echo "🔄 Activando el perfil del sistema manualmente (nixos-rebuild switch)..."
+
+# Entrar al entorno de instalación para hacer rebuild y fijar current-system
+nixos-enter --root /mnt --command "nixos-rebuild switch --flake /etc/nixos#$FLAKE_ATTR"
+
+
 echo "✅ Instalación completa de $FLAKE_ATTR. Puedes reiniciar el sistema."
