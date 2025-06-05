@@ -91,6 +91,13 @@ in
           options.mountpoint = "legacy";
           options.canmmount = "off";
         };
+
+        "${pseudoRoot}/persist/home/${username}" = {
+          type = "zfs_fs";
+          mountpoint = "/persist/home/${username}";
+          options.mountpoint = "legacy";
+          options.canmmount = "off";
+        };
       };
     };
   };
