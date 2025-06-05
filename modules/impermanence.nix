@@ -3,13 +3,11 @@
 {
   imports = [ impermanence.nixosModules.impermanence ];
 
-  environment.persistence."/nix/persist" = {
+  environment.persistence."/persist" = {
     directories = [
       "/etc/polkit-1"
-      #"/etc/nixos"
       "/etc/ssh"
-      #"/home"
-      "/var/lib/sbctl/"
+      "/var/lib/sbctl"
       "/var/lib/bluetooth"
       "/var/lib/systemd"
       "/var/lib/nixos"
