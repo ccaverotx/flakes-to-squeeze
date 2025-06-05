@@ -65,7 +65,7 @@ in
           type = "zfs_fs";
           mountpoint = "/persist";
           options.mountpoint = "legacy";
-          options.canmmount = "off";
+          options.canmount = "off";
           options.encryption = "aes-256-gcm";
           options.keyformat = "passphrase";
           options.keylocation = "prompt";
@@ -75,28 +75,28 @@ in
           type = "zfs_fs";
           mountpoint = "/persist/home";
           options.mountpoint = "legacy";
-          options.canmmount = "off";
+          options.canmount = "off";
         };
 
         "${pseudoRoot}/persist/var" = {
           type = "zfs_fs";
           mountpoint = "/persist/var";
           options.mountpoint = "legacy";
-          options.canmmount = "off";
+          options.canmount = "off";
         };
 
         "${pseudoRoot}/persist/etc-nixos" = {
           type = "zfs_fs";
           mountpoint = "/persist/etc-nixos";
           options.mountpoint = "legacy";
-          options.canmmount = "off";
+          options.canmount = "off";
         };
 
         "${pseudoRoot}/persist/home/${username}" = {
           type = "zfs_fs";
           mountpoint = "/persist/home/${username}";
           options.mountpoint = "legacy";
-          options.canmmount = "off";
+          options.canmount = "off";
         };
       };
     };
