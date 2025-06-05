@@ -98,3 +98,4 @@ nixos-enter --root /mnt --command "nixos-rebuild switch --flake /etc/nixos#$FLAK
 
 
 echo "✅ Instalación completa de $FLAKE_ATTR. Puedes reiniciar el sistema."
+#sudo chown -R ccaverotx:users /etc/nixos importante, despues para trabajar en etc/nixos

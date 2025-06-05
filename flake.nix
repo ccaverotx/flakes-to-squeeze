@@ -11,11 +11,16 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
 
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, impermanence, home-manager, lanzaboote, disko, ... }:
+  outputs = { self, nixpkgs, impermanence, home-manager, lanzaboote, disko, nixos-wsl, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -40,6 +45,8 @@
               (if hostName == "desktop" then [
                 lanzaboote.nixosModules.lanzaboote
                 disko.nixosModules.disko
+              ] else if hostName == "wsl" then [
+                nixos-wsl.nixosModules.wsl
               ] else []);
         specialArgs = {
           inherit impermanence myUsername;

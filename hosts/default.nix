@@ -21,20 +21,16 @@ let
     system.stateVersion = "24.05";
   };
 
-  nonWSLConfig = lib.mkMerge [
-    {
-      networking.networkmanager.enable = true;
+  nonWSLConfig = {
+    networking.networkmanager.enable = true;
 
-      boot.initrd.systemd.enable = true;
-      boot.supportedFilesystems = [ "ext4" ];
+    boot.initrd.systemd.enable = true;
+    boot.supportedFilesystems = [ "zfs" "ext4" ];
 
-      systemd.tmpfiles.rules = [
-        "d /etc/nixos 0755 ccaverotx users -"
-      ];
-    }
-
-    # Puedes agregar más configuraciones específicas no-WSL aquí en el futuro
-  ];
+    systemd.tmpfiles.rules = [
+      "d /etc/nixos 0755 ccaverotx users -"
+    ];
+  };
 in
 lib.mkMerge [
   commonConfig
