@@ -1,64 +1,86 @@
-{ config, lib, ... }:
+{ lib, ... }:
 
+let
+  poolName = "zroot";
+  pseudoRoot = "nixos";
+  username = "ccaverotx";
+in
 {
+  imports = [ ];
+
   disko.devices = {
     disk.main = {
       type = "disk";
-      # El valor de `device` se pasa vía CLI: --disk main /dev/nvme0n1
+      # Este se sobrescribe desde disko-install con --disk main /dev/nvme0n1
       content = {
         type = "gpt";
         partitions = {
           boot = {
+            name = "boot";
             size = "512M";
-            type = "EF00"; # EFI System Partition
+            type = "EF00";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
+              mountOptions = [ "umask=0077" ];
             };
           };
-
-          nix = {
+          zfs = {
             size = "100%";
             content = {
-              type = "filesystem";
-              format = "ext4";
-              mountpoint = "/nix";
+              type = "zfs";
+              pool = poolName;
             };
           };
         };
       };
     };
 
-    nodev = {
-      root = {
-        fsType = "tmpfs";
-        mountpoint = "/";
-        mountOptions = [ "mode=755" ];
-      };
+    nodev."/" = {
+      fsType = "tmpfs";
+      mountOptions = [ "mode=755" ];
+    };
 
-      etc-nixos = {
-        fsType = "none";
-        mountpoint = "/etc/nixos";
-        mountOptions = [ "bind" ];
-        depends = [ "/nix" ];
-        source = "/nix/persist/etc/nixos";
+    zpool.${poolName} = {
+      type = "zpool";
+      options.ashift = "12";
+      rootFsOptions = {
+        atime = "off";
+        mountpoint = "none";
+        xattr = "sa";
+        acltype = "posixacl";
+        compression = "lz4";
       };
+      datasets = {
+        "${pseudoRoot}".type = "zfs_fs";
 
-      home = {
-        fsType = "none";
-        mountpoint = "/home";
-        mountOptions = [ "bind" ];
-        depends = [ "/nix" ];
-        source = "/nix/persist/home";
-      };
+        "${pseudoRoot}/nix" = {
+          type = "zfs_fs";
+          mountpoint = "/nix";
+          options.mountpoint = "legacy";
+        };
 
-      var-lib-nixos = {
-        fsType = "none";
-        mountpoint = "/var/lib/nixos";
-        mountOptions = [ "bind" ];
-        depends = [ "/nix" ];
-        source = "/nix/persist/var/lib/nixos";
+        "${pseudoRoot}/persist" = {
+          type = "zfs_fs";
+          mountpoint = "/persist";
+          options.mountpoint = "legacy";
+          options.encryption = "aes-256-gcm";
+          options.keyformat = "passphrase";
+          options.keylocation = "prompt";
+        };
+
+        "${pseudoRoot}/persist/home" = {
+          type = "zfs_fs";
+          mountpoint = "/persist/home";
+          options.mountpoint = "legacy";
+        };
+
+        "${pseudoRoot}/persist/var" = {
+          type = "zfs_fs";
+          mountpoint = "/persist/var";
+          options.mountpoint = "legacy";
+        };
       };
     };
   };
