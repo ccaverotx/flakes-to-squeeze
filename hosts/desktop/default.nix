@@ -5,7 +5,7 @@
     ../default.nix
     ../../modules/impermanence.nix
     ../../modules/hyprland.nix
-    ../../modules/security/lanzaboote.nix
+    #../../modules/security/lanzaboote.nix
     ../../modules/security/polkit.nix
     ../../modules/services/podman
     ../../hardware-configuration.nix
@@ -37,10 +37,11 @@
     postgresql
   ];
 
-  secureboot.enable = true;
+  #secureboot.enable = true;
 
   virtualisation.podman.enable = true;
-}
 
-#boot.loader.systemd-boot.enable = true;
-#boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+}
