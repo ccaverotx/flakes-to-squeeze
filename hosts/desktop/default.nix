@@ -13,6 +13,8 @@
   ];
 
   networking.hostName = "desktop";
+  networking.hostId = "deadbeef";
+
 
   programs.hyprland.enable = true;
 
