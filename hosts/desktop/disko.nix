@@ -65,6 +65,7 @@ in
           type = "zfs_fs";
           mountpoint = "/persist";
           options.mountpoint = "legacy";
+          options.canmmount = "off";
           options.encryption = "aes-256-gcm";
           options.keyformat = "passphrase";
           options.keylocation = "prompt";
@@ -74,12 +75,14 @@ in
           type = "zfs_fs";
           mountpoint = "/persist/home";
           options.mountpoint = "legacy";
+          options.canmmount = "off";
         };
 
         "${pseudoRoot}/persist/var" = {
           type = "zfs_fs";
           mountpoint = "/persist/var";
           options.mountpoint = "legacy";
+          options.canmmount = "off";
         };
       };
     };
