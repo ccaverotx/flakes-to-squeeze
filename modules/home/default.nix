@@ -1,6 +1,6 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib,  ... }: {
   home.username = "ccaverotx";
-  home.homeDirectory = "/home/ccaverotx";
+  home.homeDirectory = lib.mkForce "/home/ccaverotx";
   home.stateVersion = "24.05";
 
   home.packages = [ 

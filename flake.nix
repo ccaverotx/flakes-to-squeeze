@@ -16,7 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -59,22 +58,12 @@
         wsl = lib.nixosSystem (mkHost "wsl");
       };
 
-      homeConfigurations.${myUsername} = home-manager.lib.homeManagerConfiguration {
-        inherit (nixpkgs) lib;
-        pkgs = import nixpkgs {
-          system = "x86_64-linux";
-          config.allowUnfree = true;
-        };
-        modules = [ ./modules/home ];
-        extraSpecialArgs = { inherit myUsername; };
-      };
-
       apps.${system} = {
         disko-install-desktop = {
           type = "app";
           program = "${disko.packages.${system}.disko}/bin/disko-install";
         };
-      
+
         nixos-install-desktop = {
           type = "app";
           program = "${nixpkgs.legacyPackages.${system}.nixos-install}/bin/nixos-install";
