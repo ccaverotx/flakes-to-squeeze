@@ -4,7 +4,6 @@
   imports = [
     ../default.nix
     ../../modules/impermanence.nix
-    ../../modules/hyprland.nix
     ../../modules/security/lanzaboote.nix
     ../../modules/security/polkit.nix
     ../../modules/services/podman
@@ -15,13 +14,7 @@
   networking.hostName = "desktop";
   networking.hostId = "deadbeef";
 
-
   programs.hyprland.enable = true;
-
-  environment.sessionVariables = {
-    XCURSOR_THEME = "Nordzy-cursors-white";
-    XCURSOR_SIZE = "30";
-  };
 
   services.displayManager.sddm = {
     enable = true;
@@ -32,6 +25,11 @@
 
   services.getty.autologinUser = "ccaverotx";
 
+  environment.sessionVariables = {
+    XCURSOR_THEME = "Nordzy-cursors-white";
+    XCURSOR_SIZE = "30";
+  };
+
   environment.systemPackages = with pkgs; [
     pantheon.pantheon-agent-polkit
     postgresql
@@ -41,9 +39,8 @@
 
   virtualisation.podman.enable = true;
 
-
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   fileSystems."/etc/nixos" = {
     device = "zroot/nixos/persist/etc-nixos";
@@ -52,7 +49,7 @@
     neededForBoot = true;
   };
 
-   fileSystems."/persist" = {
+  fileSystems."/persist" = {
     device = "zroot/nixos/persist";
     fsType = "zfs";
     options = [ "zfsutil" ];
