@@ -25,7 +25,7 @@
     ./programs/tui-apps/yazi
     ./programs/tui-apps/qutebrowser
     ./desktop/wms/hyprland
-    ./services/polkit.nix
+    #./services/polkit.nix
     ./desktop/wms/hyprland/xdg.nix
   ];
 }
