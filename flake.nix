@@ -59,6 +59,19 @@
           hostType = hostName;
         };
       };
+
+      allHosts = [ "desktop" "wsl" "macbook-pro-2015" ];
+
+      mkInstallApps = host: {
+        "disko-install-${host}" = {
+          type = "app";
+          program = "${disko.packages.${system}.disko}/bin/disko-install";
+        };
+        "nixos-install-${host}" = {
+          type = "app";
+          program = "${nixpkgs.legacyPackages.${system}.nixos-install}/bin/nixos-install";
+        };
+      };
     in {
       nixosConfigurations = {
         desktop = lib.nixosSystem (mkHost "desktop");
@@ -66,16 +79,7 @@
         macbook-pro-2015 = lib.nixosSystem (mkHost "macbook-pro-2015");
       };
 
-      apps.${system} = {
-        disko-install-desktop = {
-          type = "app";
-          program = "${disko.packages.${system}.disko}/bin/disko-install";
-        };
-
-        nixos-install-desktop = {
-          type = "app";
-          program = "${nixpkgs.legacyPackages.${system}.nixos-install}/bin/nixos-install";
-        };
-      };
+      apps.${system} =
+        lib.foldl' (acc: host: acc // mkInstallApps host) {} allHosts;
     };
 }
