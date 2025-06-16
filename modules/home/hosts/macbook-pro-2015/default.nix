@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.username = "ccaverotx";
+  home.homeDirectory = lib.mkForce "/home/ccaverotx";
+  home.stateVersion = "24.05";
+  
   imports = [
     ../../desktop/wms/hyprland
     ../../desktop/wms/hyprland/xdg.nix
