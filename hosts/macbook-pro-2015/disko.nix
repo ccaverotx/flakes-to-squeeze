@@ -30,10 +30,10 @@ in
               extraArgs = [ "-f" ]; # Forzar formateo si ya existe
               # No se necesita mountpoint en el volumen raíz si subvolúmenes montan todo
               subvolumes = {
-                "/rootfs" = {
-                  mountpoint = "/";
-                  mountOptions = [ "compress=zstd" "noatime" ];
-                };
+                #"/rootfs" = {
+                #  mountpoint = "/";
+                #  mountOptions = [ "compress=zstd" "noatime" ];
+                #};
 
                 "/nix" = {
                   mountpoint = "/nix";
