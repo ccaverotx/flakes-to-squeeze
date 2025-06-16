@@ -6,14 +6,15 @@
   config = lib.mkIf config.hyprlandSystem.enable {
     programs.hyprland.enable = true;
 
-    services.displayManager.sddm = {
+    services.greetd = {
       enable = true;
-      wayland.enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+          user = "ccaverotx";
+        };
+      };
     };
-
-    services.displayManager.defaultSession = "hyprland";
-
-    services.getty.autologinUser = "ccaverotx";
 
     environment.sessionVariables = {
       XCURSOR_THEME = "Nordzy-cursors-white";
@@ -21,6 +22,7 @@
     };
 
     environment.systemPackages = with pkgs; [
+      greetd.tuigreet
       pantheon.pantheon-agent-polkit
     ];
   };
