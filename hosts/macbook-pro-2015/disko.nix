@@ -12,6 +12,7 @@ in
         type = "gpt";
         partitions = {
           esp = {
+            name = "ESP";
             size = "512M";
             type = "EF00";
             content = {
@@ -26,32 +27,39 @@ in
             size = "100%";
             content = {
               type = "btrfs";
-              extraArgs = [ "-f" ]; # forzar formato
+              extraArgs = [ "-f" ]; # Forzar formateo si ya existe
+              # No se necesita mountpoint en el volumen raíz si subvolúmenes montan todo
               subvolumes = {
-                "nix" = {
+                "/rootfs" = {
+                  mountpoint = "/";
+                  mountOptions = [ "compress=zstd" "noatime" ];
+                };
+
+                "/nix" = {
                   mountpoint = "/nix";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
 
-                "persist" = {
+                "/persist" = {
                   mountpoint = "/persist";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
 
-                "persist/home" = {
-                  mountpoint = "/persist/home";
-                };
+                "/persist/home" = { };
 
-                "persist/home/${username}" = {
-                  mountpoint = "/persist/home/${username}";
-                };
+                "/persist/home/${username}" = { };
 
-                "persist/var" = {
+                "/persist/var" = {
                   mountpoint = "/persist/var";
                 };
 
-                "persist/etc-nixos" = {
+                "/persist/etc-nixos" = {
                   mountpoint = "/persist/etc-nixos";
+                };
+
+                "/swap" = {
+                  mountpoint = "/.swapvol";
+                  swap.swapfile.size = "4G";
                 };
               };
             };
