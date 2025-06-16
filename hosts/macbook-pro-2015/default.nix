@@ -13,7 +13,7 @@
   ];
 
   networking.hostName = "macbook-pro-2015";
-  networking.hostId = "slimboi";
+  networking.hostId = "deadbeef";
 
   hyprlandSystem.enable = true;
 
