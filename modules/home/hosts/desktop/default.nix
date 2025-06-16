@@ -1,4 +1,6 @@
-{ config, pkgs, lib, ... }: 
+{ pkgs, lib, hostType, ... }:
+
+assert hostType == "desktop";  # Verificación estricta
 
 {
   home.username = "ccaverotx";
