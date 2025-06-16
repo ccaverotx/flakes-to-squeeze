@@ -27,14 +27,8 @@ in
             size = "100%";
             content = {
               type = "btrfs";
-              extraArgs = [ "-f" ]; # Forzar formateo si ya existe
-              # No se necesita mountpoint en el volumen raíz si subvolúmenes montan todo
+              extraArgs = [ "-f" ];
               subvolumes = {
-                #"/rootfs" = {
-                #  mountpoint = "/";
-                #  mountOptions = [ "compress=zstd" "noatime" ];
-                #};
-
                 "/nix" = {
                   mountpoint = "/nix";
                   mountOptions = [ "compress=zstd" "noatime" ];
@@ -42,7 +36,8 @@ in
 
                 "/persist" = {
                   mountpoint = "/persist";
-                  mountOptions = [ "compress=zstd" "noatime" ];
+                  neededForBoot = true;
+                  mountOptions = [ "compress=zstd" "noatime" "x-initrd.mount" ];
                 };
 
                 "/persist/home" = { };
