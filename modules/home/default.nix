@@ -3,6 +3,7 @@
 let
   hostModules = {
     desktop = ./hosts/desktop;
+    macbook-pro-2015 = ./hosts/macbook-pro-2015;
     # laptop = ./hosts/laptop.nix;
   };
 in {
