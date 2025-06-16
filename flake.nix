@@ -36,7 +36,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "backup";
-                home-manager.users.${myUsername} = (import ./modules/home) {
+                home-manager.users.${myUsername} = (import ./modules/home/hosts) {
                   inherit impermanence myUsername system;
                   hostname = hostName;
                   lib = nixpkgs.lib;
