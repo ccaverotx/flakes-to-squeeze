@@ -20,7 +20,7 @@ sgdisk --zap-all "$DISK"
 
 ### PASO 1: Montar tmpfs como raíz ###
 echo "🔒 Montando / como tmpfs..."
-mount -t tmpfs -o mode=755 tmpfs /mnt
+mount -t tmpfs -o mode=755,size=4G tmpfs /mnt
 
 ### PASO 2: Crear puntos de montaje previos ###
 echo "📂 Creando puntos de montaje previos..."
@@ -35,21 +35,35 @@ cd "$FLAKE_PATH"
 echo "🧱 Ejecutando disko-install para $FLAKE_ATTR..."
 nix run .#disko-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR" --disk main "$DISK"
 
-### PASO 5: Verificar puntos de montaje ###
-echo "🔍 Verificando puntos de montaje..."
-findmnt -n -o TARGET -R /mnt
+### PASO 5: Montar los subvolúmenes manualmente ###
+echo "📦 Montando subvolúmenes Btrfs..."
+mount -o subvol=/ /dev/sda2 /mnt
+mount -o subvol=/nix,compress=zstd,noatime /dev/sda2 /mnt/nix
+mount -o subvol=/persist,compress=zstd,noatime /dev/sda2 /mnt/persist
+mount -o subvol=/persist/etc-nixos /dev/sda2 /mnt/persist/etc-nixos
+mount -o subvol=/persist/var /dev/sda2 /mnt/persist/var
+mount -o subvol=/persist/home /dev/sda2 /mnt/persist/home
+mount -o subvol=/persist/home/$USER /dev/sda2 /mnt/persist/home/$USER
 
-### PASO 5.5: Re-clonar el flake dentro de /mnt/etc/nixos ###
+### PASO 6: Montar partición EFI ###
+echo "🧷 Montando partición EFI en /mnt/boot..."
+mount "${DISK}1" /mnt/boot
+
+### PASO 7: Verificar puntos de montaje ###
+echo "🔍 Verificando puntos de montaje..."
+findmnt -R /mnt
+
+### PASO 8: Re-clonar flake dentro de /mnt/etc/nixos ###
 echo "🔁 Re-clonando flake dentro de /mnt/etc/nixos para nixos-install..."
 rm -rf /mnt/etc/nixos/.??* /mnt/etc/nixos/* || true
 git clone "$REPO_URL" /mnt/etc/nixos
 
-### PASO 6: Instalar NixOS ###
+### PASO 9: Instalar NixOS ###
 echo "🛠️ Ejecutando nixos-install para $FLAKE_ATTR..."
 cd /mnt/etc/nixos
 nix run .#nixos-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR"
 
-### PASO 7: Rebuild final con nixos-enter ###
+### PASO 10: Activación manual del sistema con nixos-enter ###
 echo "🔄 Activando el perfil del sistema manualmente (nixos-rebuild switch)..."
 nixos-enter --root /mnt --command "nixos-rebuild switch --flake /etc/nixos#$FLAKE_ATTR"
 
