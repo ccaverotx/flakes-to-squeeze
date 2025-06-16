@@ -18,7 +18,7 @@
   hyprlandSystem.enable = true;
 
   virtualisation.podman.enable = true;
-  file-systems.btrfs.enable = true;
+  #file-systems.btrfs.enable = true;
 
   environment.systemPackages = with pkgs; [
     postgresql
