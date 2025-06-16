@@ -1,31 +1,26 @@
-{ config, pkgs, lib, impermanence, ... }: {
+{ config, pkgs, lib, impermanence, ... }:
+
+{
   imports = [
     ../default.nix
     ../../modules/impermanence.nix
     ../../modules/security/polkit.nix
+    ../../modules/services/podman
+    ../../modules/home/desktop/wms/hyprland/system.nix
+    ../../modules/file-systems/btrfs.nix
     ../../hardware-configuration.nix
+    ../../hosts/macbook-pro-2015/disko.nix
   ];
 
   networking.hostName = "macbook-pro-2015";
-  networking.hostId = "cafebabe"; # cámbialo si tienes conflictos
+  networking.hostId = "slimboi";
 
-  time.timeZone = "America/La_Paz";
-  i18n.defaultLocale = "en_US.UTF-8";
+  hyprlandSystem.enable = true;
 
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-
-  services.displayManager.defaultSession = "hyprland";
-
-  services.getty.autologinUser = "ccaverotx";
+  virtualisation.podman.enable = true;
+  file-systems.btrfs.enable = true;
 
   environment.systemPackages = with pkgs; [
-    pantheon.pantheon-agent-polkit
+    postgresql
   ];
-
-  secureboot.enable = false;
-
-  # File systems, adapt based on your setup (ZFS, ext4, etc)
 }

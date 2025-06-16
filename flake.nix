@@ -49,6 +49,8 @@
               (if hostName == "desktop" then [
                 lanzaboote.nixosModules.lanzaboote
                 disko.nixosModules.disko
+              ] else if hostName == "macbook-pro-2015" then [
+                disko.nixosModules.disko
               ] else if hostName == "wsl" then [
                 nixos-wsl.nixosModules.wsl
               ] else []);
@@ -61,6 +63,7 @@
       nixosConfigurations = {
         desktop = lib.nixosSystem (mkHost "desktop");
         wsl = lib.nixosSystem (mkHost "wsl");
+        macbook-pro-2015 = lib.nixosSystem (mkHost "macbook-pro-2015");
       };
 
       apps.${system} = {
