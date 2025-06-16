@@ -4,6 +4,8 @@ set -euo pipefail
 ### CONFIGURACIÓN ###
 USER="ccaverotx"
 DISK="/dev/sda"
+EFI_PART="${DISK}1"
+BTRFS_PART="${DISK}2"
 FLAKE_ATTR="macbook-pro-2015"
 REPO_URL="https://github.com/ccaverotx/flakes-to-squeeze"
 FLAKE_PATH="/mnt/persist/etc/nixos"
@@ -38,20 +40,19 @@ nix run .#disko-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR" --disk main "$D
 ### PASO 5: Montar los subvolúmenes manualmente ###
 echo "📦 Montando subvolúmenes Btrfs..."
 mount -o subvol=/ /dev/sda2 /mnt
-mount -o subvol=/nix,compress=zstd,noatime /dev/sda2 /mnt/nix
-mount -o subvol=/persist,compress=zstd,noatime /dev/sda2 /mnt/persist
-mount -o subvol=/persist/etc-nixos /dev/sda2 /mnt/persist/etc-nixos
-mount -o subvol=/persist/var /dev/sda2 /mnt/persist/var
-mount -o subvol=/persist/home /dev/sda2 /mnt/persist/home
-mount -o subvol=/persist/home/$USER /dev/sda2 /mnt/persist/home/$USER
+
+for SUBVOL in nix persist persist/etc-nixos persist/var persist/home persist/home/"$USER"; do
+  mkdir -p "/mnt/${SUBVOL}"
+  mount -o subvol=/${SUBVOL},compress=zstd,noatime "$BTRFS_PART" "/mnt/${SUBVOL}"
+done
 
 ### PASO 6: Montar partición EFI ###
 echo "🧷 Montando partición EFI en /mnt/boot..."
-mount "${DISK}1" /mnt/boot
+mount "$EFI_PART" /mnt/boot
 
 ### PASO 7: Verificar puntos de montaje ###
 echo "🔍 Verificando puntos de montaje..."
-findmnt -R /mnt
+findmnt -R /mnt || echo "❗ Algo no está montado correctamente."
 
 ### PASO 8: Re-clonar flake dentro de /mnt/etc/nixos ###
 echo "🔁 Re-clonando flake dentro de /mnt/etc/nixos para nixos-install..."
