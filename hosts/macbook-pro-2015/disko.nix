@@ -50,11 +50,6 @@ in
                 "/persist/etc-nixos" = {
                   mountpoint = "/persist/etc-nixos";
                 };
-
-                "/swap" = {
-                  mountpoint = "/.swapvol";
-                  swap.swapfile.size = "4G";
-                };
               };
             };
           };
