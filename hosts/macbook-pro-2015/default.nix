@@ -28,7 +28,7 @@
   services.tlp.enable = true;
 
   hardware.sensor.iio.enable = true;
-  hardware.lm-sensors.enable = true;
+  #hardware.lm-sensors.enable = true;
 
   services.mbpfan = {
     enable = true;
