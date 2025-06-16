@@ -36,6 +36,7 @@ in
 
                 "/persist" = {
                   mountpoint = "/persist";
+                  neededForBoot = true;
                   mountOptions = [ "compress=zstd" "noatime" "x-initrd.mount" ];
                 };
 

@@ -23,4 +23,7 @@
   environment.systemPackages = with pkgs; [
     postgresql
   ];
+
+  # 🔧 Necesario para que impermanence funcione correctamente
+  fileSystems."/persist".neededForBoot = true;
 }
