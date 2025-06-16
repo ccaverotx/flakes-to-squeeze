@@ -7,7 +7,7 @@
     ../../modules/security/polkit.nix
     ../../modules/services/podman
     ../../modules/home/desktop/wms/hyprland/system.nix
-    ../../modules/file-systems/btrfs.nix
+    #../../modules/file-systems/btrfs.nix
     ../../hardware-configuration.nix
     ../../hosts/macbook-pro-2015/disko.nix
   ];
