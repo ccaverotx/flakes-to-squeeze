@@ -6,7 +6,7 @@ POOL="zroot"
 PREFIX="nixos"
 USER="ccaverotx"
 DISK="/dev/sda"
-FLAKE_ATTR="macbook-pro"
+FLAKE_ATTR="macbook-pro-2015"
 REPO_URL="https://github.com/ccaverotx/flakes-to-squeeze"
 FLAKE_PATH="/mnt/persist/etc/nixos"
 
