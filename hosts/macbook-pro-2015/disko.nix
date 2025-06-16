@@ -59,7 +59,10 @@ in
 
     nodev."/" = {
       fsType = "tmpfs";
-      mountOptions = [ "mode=755", "size=8G" ];
+      mountOptions = [
+        "mode=755"
+        "size=4G" # limita a 4 GB de RAM
+      ];
     };
   };
 }
