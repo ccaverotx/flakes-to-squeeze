@@ -1,29 +1,37 @@
-{ lib, pkgs, ... }:
+{ pkgs, lib, hostType, ... }:
 
-{
-  home.username = "ccaverotx";
-  home.homeDirectory = lib.mkForce "/home/ccaverotx";
-  home.stateVersion = "24.05";
-  
-  imports = [
-    ../../desktop/wms/hyprland
-    ../../desktop/wms/hyprland/xdg.nix
-    ../../programs/gui-apps/firefox
-    ../../programs/gui-apps/kitty
-    ../../programs/gui-apps/vscode
-    ../../programs/gui-apps/nemo
-    ../../programs/tui-apps/yazi
-    ../../programs/tui-apps/qutebrowser
-  ];
+builtins.trace ">>> Host recibido en home/hosts/macbook-pro-2015: ${hostType}" (
 
-  home.packages = with pkgs; [
-    unzip
-    udiskie
-    nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.hack
-    nerd-fonts.noto
-    nerd-fonts.dejavu-sans-mono
-    font-awesome
-  ];
-}
+  assert hostType == "macbook-pro-2015";
+
+  {
+    imports = [
+      ../../globals/host-type.nix
+      ../../programs/gui-apps/firefox
+      ../../programs/gui-apps/vscode
+      ../../programs/gui-apps/kitty
+      ../../programs/gui-apps/nemo
+      ../../programs/tui-apps/yazi
+      ../../programs/tui-apps/qutebrowser
+      ../../desktop/wms/hyprland
+      ../../desktop/wms/hyprland/xdg.nix
+    ];
+
+    home.username = "ccaverotx";
+    home.homeDirectory = lib.mkForce "/home/ccaverotx";
+    home.stateVersion = "24.05";
+
+    hostType = hostType;
+
+    home.packages = with pkgs; [
+      unzip
+      udiskie
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.hack
+      nerd-fonts.noto
+      nerd-fonts.dejavu-sans-mono
+      font-awesome
+    ];
+  }
+)
