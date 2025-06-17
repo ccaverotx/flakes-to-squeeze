@@ -10,7 +10,6 @@
     ../../hardware-configuration.nix
     ../../hosts/macbook-pro-2015/disko.nix
     ../../modules/hardware/bluetooth.nix
-    ../../modules/hardware/fan.nix
     ../../modules/hardware/sensors.nix
     ../../modules/hardware/audio.nix
     ../../modules/hardware/brightness.nix
