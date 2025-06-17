@@ -86,10 +86,10 @@ let
   '';
 
   macbookSpecificBinds = ''
-    # Brillo en MacBook Pro
-    bind = , 224, exec, brightnessctl set 10%-
-    bind = , 225, exec, brightnessctl set +10%
+    bind = , XF86MonBrightnessDown, exec, brightnessctl set 10%-
+    bind = , XF86MonBrightnessUp, exec, brightnessctl set +10%
   '';
+
 
   trackballConfig = ''
     device {
