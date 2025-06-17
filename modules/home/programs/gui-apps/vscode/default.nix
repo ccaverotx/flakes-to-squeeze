@@ -4,7 +4,8 @@ let
   hostType = config.hostType;
 
   vscodePackage = if hostType == "macbook-pro-2015" then
-    (pkgs.writeShellScriptBin "code" ''
+    # Wrapper llamado 'code-wayland' para evitar colisión con 'code'
+    (pkgs.writeShellScriptBin "code-wayland" ''
       export NIXOS_OZONE_WL=1
       export ELECTRON_OZONE_PLATFORM_HINT=auto
       exec ${pkgs.vscode}/bin/code --ozone-platform=wayland
