@@ -17,6 +17,7 @@
     };
 
     environment.sessionVariables = {
+      GDK_SCALE = "2";
       XCURSOR_THEME = "Nordzy-cursors-white";
       XCURSOR_SIZE = "30";
     };

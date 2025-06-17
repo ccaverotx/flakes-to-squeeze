@@ -46,10 +46,15 @@ let
 
 in {
   wayland.windowManager.hyprland.extraConfig = ''
-    ### --- Monitor Layout for ${hostType} ---
-    ${monitorBlock}
+  ### --- Monitor Layout for ${hostType} ---
+  ${monitorBlock}
 
-    # Workspace mapping
-    ${mapMonitorsToWs}
-  '';
+  # Workspace mapping
+  ${mapMonitorsToWs}
+
+  # XWayland HiDPI fix
+  xwayland {
+    force_zero_scaling = true
+  }
+'';
 }
