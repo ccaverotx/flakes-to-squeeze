@@ -2,11 +2,18 @@
 
 builtins.trace ">>> Host recibido en home/hosts/desktop: ${hostType}" (
 
+let
+  theme = "nord"; # 👈 Valor del tema activo para este host
+in
+
+builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
+
   assert hostType == "desktop";
 
   {
     imports = [
       ../../globals/host-type.nix
+      ../../globals/global-theme.nix
       ../../programs/gui-apps/firefox
       ../../programs/gui-apps/dbeaver
       ../../programs/gui-apps/vscode
@@ -22,7 +29,8 @@ builtins.trace ">>> Host recibido en home/hosts/desktop: ${hostType}" (
     home.homeDirectory = lib.mkForce "/home/ccaverotx";
     home.stateVersion = "24.05";
 
-    hostType = hostType;  # 🔥 Aquí lo defines en el árbol `config`
+    hostType = hostType;
+    hyprlandTheme.active = theme;
 
     home.packages = with pkgs; [
       unzip
@@ -35,4 +43,4 @@ builtins.trace ">>> Host recibido en home/hosts/desktop: ${hostType}" (
       font-awesome
     ];
   }
-)
+))

@@ -9,6 +9,13 @@
     ../../modules/home/desktop/wms/hyprland/system.nix
     ../../hardware-configuration.nix
     ../../hosts/macbook-pro-2015/disko.nix
+    ../../modules/hardware/bluetooth.nix
+    ../../modules/hardware/fan.nix
+    ../../modules/hardware/sensors.nix
+    ../../modules/hardware/audio.nix
+    ../../modules/hardware/brightness.nix
+    ../../modules/services/tlp
+    ../../modules/services/mbpfan
   ];
 
   networking.hostName = "macbook-pro-2015";
@@ -20,53 +27,8 @@
   hyprlandSystem.enable = true;
   virtualisation.podman.enable = true;
 
-  networking.networkmanager.enable = true;
-
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
-
-  services.tlp.enable = true;
-
-  hardware.sensor.iio.enable = true;
-  #hardware.lm-sensors.enable = true;
-
-  services.mbpfan = {
-    enable = true;
-    settings.general = {
-      verbose = true;
-      log_level = 2;
-      daemon = true;
-    };
-  };
-
+  # Conservamos las utils aquí de momento
   environment.systemPackages = with pkgs; [
-    postgresql
-
-    # Red
-    networkmanager
-    networkmanagerapplet
-
-    # Gestión térmica
-    mbpfan
-
-    # Brillo y retroiluminación
-    brightnessctl
-    acpilight
-
-    # Sensores y energía
-    tlp
-    acpi
-    lm_sensors
-
-    # Audio
-    pulseaudio
-
-    # Bluetooth
-    bluez
-    bluez-tools
-    blueman
-
-    # Utilidades generales
     unzip
     htop
     pciutils

@@ -4,9 +4,12 @@ let
   themeName = config.hyprlandTheme.active;
   availableThemes = {
     nord = import ./nord { inherit config pkgs lib; };
+    # Agrega más temas aquí si los creas
+    # catppuccin = import ./catppuccin { inherit config pkgs lib; };
   };
   activeTheme = lib.attrByPath [ themeName ] null availableThemes;
 in
+
 {
   config = lib.mkIf (activeTheme != null) {
     home.packages = [
@@ -25,7 +28,7 @@ in
 
     gtk = {
       enable = true;
-      
+
       cursorTheme = {
         name = activeTheme.gtk.cursorTheme.name;
         package = activeTheme.gtk.cursorTheme.package;
@@ -57,14 +60,6 @@ in
       enable = true;
       extraConfig = activeTheme.kitty.theme.content;
     };
-
-    #programs.vscode = {
-    #  enable = true;
-    #  profiles.default = {
-    #    extensions = [ activeTheme.vscode.extension ];
-    #    userSettings = activeTheme.vscode.settings;
-    #  };
-    #};#
 
     xdg.configFile = (activeTheme.rofi or { }).xdg.configFile or {};
   };

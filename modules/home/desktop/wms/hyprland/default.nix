@@ -5,12 +5,6 @@ let
 in
 
 {
-  options.hyprlandTheme.active = lib.mkOption {
-    type = lib.types.str;
-    default = "nord";
-    description = "Tema activo para Hyprland";
-  };
-
   imports = [
     ./hyprconf/bindings.nix
     ./hyprconf/monitor.nix
