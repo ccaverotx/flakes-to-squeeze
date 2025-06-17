@@ -2,11 +2,18 @@
 
 builtins.trace ">>> Host recibido en home/hosts/macbook-pro-2015: ${hostType}" (
 
+let
+  theme = "nord"; # 👈 Valor del tema activo para este host
+in
+
+builtins.trace ">>> Tema activo en home/hosts/macbook-pro-2015: ${theme}" (
+
   assert hostType == "macbook-pro-2015";
 
   {
     imports = [
       ../../globals/host-type.nix
+      ../../globals/global-theme.nix
       ../../programs/gui-apps/firefox
       ../../programs/gui-apps/vscode
       ../../programs/gui-apps/kitty
@@ -22,6 +29,7 @@ builtins.trace ">>> Host recibido en home/hosts/macbook-pro-2015: ${hostType}" (
     home.stateVersion = "24.05";
 
     hostType = hostType;
+    hyprlandTheme.active = theme;
 
     home.packages = with pkgs; [
       unzip
@@ -34,4 +42,4 @@ builtins.trace ">>> Host recibido en home/hosts/macbook-pro-2015: ${hostType}" (
       font-awesome
     ];
   }
-)
+))
