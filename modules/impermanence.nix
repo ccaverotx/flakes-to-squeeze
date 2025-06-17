@@ -7,6 +7,8 @@
     directories = [
       "/etc/polkit-1"
       "/etc/ssh"
+      "/etc/NetworkManager"
+      "/var/lib/NetworkManager"
       "/var/lib/sbctl"
       "/var/lib/bluetooth"
       "/var/lib/systemd"
