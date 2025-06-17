@@ -20,6 +20,8 @@
       GDK_SCALE = "2";
       XCURSOR_THEME = "Nordzy-cursors-white";
       XCURSOR_SIZE = "30";
+      ELECTRON_ENABLE_HIGH_DPI_SCALING = "1";
+      ELECTRON_FORCE_DEVICE_SCALE_FACTOR = "2";
     };
 
     environment.systemPackages = with pkgs; [
