@@ -1,6 +1,8 @@
 { config, pkgs, lib, ... }:
 
 let
+  hostType = config.hostType;
+
   # Lista de monitores en orden lógico de izquierda a derecha
   monitors = [
     { name = "DP-2"; width = 1920; height = 1200; }  # Vertical a la izquierda
@@ -24,7 +26,7 @@ let
 
 in {
   wayland.windowManager.hyprland.extraConfig = ''
-    ### --- Monitor Layout ---
+    ### --- Monitor Layout for ${hostType} ---
     monitor=DP-2,1920x1200,0x0,1,transform,3
     monitor=DP-1,1920x1080@180,1920x0,1
     # Workspace mapping

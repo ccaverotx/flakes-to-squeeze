@@ -1,14 +1,12 @@
 { pkgs, lib, hostType, ... }:
 
 builtins.trace ">>> Host recibido en home/hosts/desktop: ${hostType}" (
-  assert hostType == "desktop";  # Verificación estricta
+
+  assert hostType == "desktop";
 
   {
-    home.username = "ccaverotx";
-    home.homeDirectory = lib.mkForce "/home/ccaverotx";
-    home.stateVersion = "24.05";
-
     imports = [
+      ../../globals/host-type.nix
       ../../programs/gui-apps/firefox
       ../../programs/gui-apps/dbeaver
       ../../programs/gui-apps/vscode
@@ -19,6 +17,12 @@ builtins.trace ">>> Host recibido en home/hosts/desktop: ${hostType}" (
       ../../desktop/wms/hyprland
       ../../desktop/wms/hyprland/xdg.nix
     ];
+
+    home.username = "ccaverotx";
+    home.homeDirectory = lib.mkForce "/home/ccaverotx";
+    home.stateVersion = "24.05";
+
+    hostType = hostType;  # 🔥 Aquí lo defines en el árbol `config`
 
     home.packages = with pkgs; [
       unzip

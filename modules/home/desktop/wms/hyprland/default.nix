@@ -1,5 +1,9 @@
 { config, lib, pkgs, ... }:
 
+let
+  hostType = config.hostType;
+in
+
 {
   options.hyprlandTheme.active = lib.mkOption {
     type = lib.types.str;
@@ -44,7 +48,7 @@
       };
     };
 
-    wayland.windowManager.hyprland = {
+    wayland.windowManager.hyprland = builtins.trace ">>> hostType desde config.hostType: ${hostType}" {
       enable = true;
       package = null;
       systemd.enable = true;
@@ -52,7 +56,6 @@
 
       settings = {
         exec-once = [
-          # TODO: hardcoded cursor
           "hyprctl setcursor Nordzy-cursors-white 30"
           "dbus-update-activation-environment --systemd --all"
           "nm-applet --indicator"
@@ -66,7 +69,7 @@
           border_size = 2;
           layout = "dwindle";
         };
-        
+
         input.kb_layout = "us";
       };
     };
