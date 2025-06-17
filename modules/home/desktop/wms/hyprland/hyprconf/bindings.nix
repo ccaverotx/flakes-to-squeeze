@@ -88,6 +88,8 @@ let
   macbookSpecificBinds = ''
     bind = , XF86MonBrightnessDown, exec, brightnessctl set 10%-
     bind = , XF86MonBrightnessUp, exec, brightnessctl set +10%
+    bind = , XF86KbdBrightnessDown, exec, brightnessctl --device='smc::kbd_backlight' set 1-
+    bind = , XF86KbdBrightnessUp, exec, brightnessctl --device='smc::kbd_backlight' set +1
   '';
 
 
