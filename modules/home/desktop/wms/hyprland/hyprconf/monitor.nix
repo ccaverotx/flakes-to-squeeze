@@ -8,7 +8,7 @@ let
       { name = "DP-2"; width = 1920; height = 1200; x = 0; y = 0; scale = 1; transform = 3; }
       { name = "DP-1"; width = 1920; height = 1080; x = 1920; y = 0; scale = 1; refresh = "180"; }
     ] else if hostType == "macbook-pro-2015" then [
-      { name = "eDP-1"; width = 2880; height = 1800; x = 0; y = 0; scale = 1; }
+      { name = "eDP-1"; width = 2880; height = 1800; x = 0; y = 0; scale = 2; }
     ] else [];
 
   # Convierte cada entrada en una línea de Hyprland
