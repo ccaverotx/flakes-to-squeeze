@@ -32,6 +32,7 @@
     htop
     pciutils
     usbutils
+    wev
   ];
 
   # Necesario para que impermanence funcione correctamente
