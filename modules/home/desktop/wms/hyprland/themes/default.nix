@@ -58,13 +58,13 @@ in
       extraConfig = activeTheme.kitty.theme.content;
     };
 
-    programs.vscode = {
-      enable = true;
-      profiles.default = {
-        extensions = [ activeTheme.vscode.extension ];
-        userSettings = activeTheme.vscode.settings;
-      };
-    };
+    #programs.vscode = {
+    #  enable = true;
+    #  profiles.default = {
+    #    extensions = [ activeTheme.vscode.extension ];
+    #    userSettings = activeTheme.vscode.settings;
+    #  };
+    #};#
 
     xdg.configFile = (activeTheme.rofi or { }).xdg.configFile or {};
   };

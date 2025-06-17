@@ -22,7 +22,7 @@ let
 
   waybarTheme = import ./waybar { inherit config lib pkgs; };
   kitty = import ./kitty { inherit config pkgs lib; };
-  vscode = (import ./vscode { inherit config pkgs lib; }).vscode;
+  #vscode = (import ./vscode { inherit config pkgs lib; }).vscode;
   rofi = import ./rofi/default.nix { inherit config pkgs lib; };
 
 in
@@ -108,7 +108,7 @@ in
 
   kitty = kitty;
   
-  vscode = vscode;
+  #vscode = vscode;
 
   #rofi = {
   #  theme = {
