@@ -21,6 +21,9 @@
 
   #secureBoot.enable = true;
   virtualisation.podman.enable = true;
+  
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   file-systems.zfs.enable = true;
 
