@@ -4,7 +4,7 @@
   imports = [
     ../default.nix
     ../../modules/impermanence.nix
-    ../../modules/security/lanzaboote.nix
+    #../../modules/security/lanzaboote.nix
     ../../modules/security/polkit.nix
     ../../modules/security/secure-boot.nix
     ../../modules/services/podman
