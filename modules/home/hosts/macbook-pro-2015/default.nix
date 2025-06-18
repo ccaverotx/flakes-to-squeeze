@@ -34,6 +34,7 @@ builtins.trace ">>> Tema activo en home/hosts/macbook-pro-2015: ${theme}" (
     home.packages = with pkgs; [
       unzip
       udiskie
+      distrobox
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
       nerd-fonts.hack
