@@ -4,9 +4,9 @@
   imports = [
     ../default.nix
     ../../modules/impermanence.nix
-    #../../modules/security/lanzaboote.nix
+    ../../modules/security/lanzaboote.nix
     ../../modules/security/polkit.nix
-    #../../modules/security/secure-boot.nix
+    ../../modules/security/secure-boot.nix
     ../../modules/services/podman
     ../../modules/home/desktop/wms/hyprland/system.nix
     ../../modules/file-systems/zfs.nix
@@ -19,11 +19,11 @@
 
   hyprlandSystem.enable = true;
 
-  #secureBoot.enable = true;
+  secureBoot.enable = true;
   virtualisation.podman.enable = true;
   
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
 
   file-systems.zfs.enable = true;
 

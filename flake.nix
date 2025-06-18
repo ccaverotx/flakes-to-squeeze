@@ -20,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, impermanence, home-manager,lanzaboote, disko, nixos-wsl, ... }:
+  outputs = { self, nixpkgs, impermanence, home-manager, lanzaboote, disko, nixos-wsl, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -30,7 +30,7 @@
       # Aquí defines metadatos por host
       hosts = {
         desktop = {
-          useLanzaboote = builtins.getEnv "USE_LANZABOOTE" == "1";
+          useLanzaboote = true;
           useDisko = true;
           useWSL = false;
         };
@@ -67,12 +67,9 @@
             ];
 
             optionalModules =
-                lib.optionals hosts.${hostName}.useLanzaboote [
-                  lanzaboote.nixosModules.lanzaboote
-                  ./modules/security/lanzaboote.nix
-                ]
+                lib.optional hosts.${hostName}.useLanzaboote lanzaboote.nixosModules.lanzaboote
                 ++ lib.optional hosts.${hostName}.useDisko disko.nixosModules.disko
-                ++ lib.optional hosts.${hostName}.useWSL nixos-wsl.nixosModules.wsl;
+                 ++ lib.optional hosts.${hostName}.useWSL nixos-wsl.nixosModules.wsl;
 
           in
             baseModules ++ optionalModules;

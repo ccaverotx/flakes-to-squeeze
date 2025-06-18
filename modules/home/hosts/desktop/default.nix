@@ -19,6 +19,7 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
       ../../programs/gui-apps/vscode
       ../../programs/gui-apps/kitty
       ../../programs/gui-apps/nemo
+      ../../programs/gui-apps/zoom
       ../../programs/tui-apps/yazi
       ../../programs/tui-apps/qutebrowser
       ../../desktop/wms/hyprland
@@ -35,6 +36,8 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
     home.packages = with pkgs; [
       unzip
       udiskie
+      devenv
+      distrobox
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
       nerd-fonts.hack
