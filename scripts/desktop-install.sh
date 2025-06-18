@@ -51,13 +51,16 @@ cd "$FLAKE_PATH"
 ### PASO 3.5: Comentar todo lo relacionado con lanzaboote ###
 echo "📝 Comentando lanzaboote del flake..."
 
-# Comentar input lanzaboote
-sed -i 's/^\([[:space:]]*\)lanzaboote\(.*\)/\1# lanzaboote\2/' flake.nix
+# Comentar cada línea del bloque lanzaboote = { ... };
+sed -i '/^[[:space:]]*lanzaboote[[:space:]]*=[[:space:]]*{/,/^[[:space:]]*};/s/^/# /' flake.nix
 
-# Comentar usos en la lista de outputs
-sed -i 's/^\([[:space:]]*\)lanzaboote\.nixosModules\.lanzaboote/\1# lanzaboote.nixosModules.lanzaboote/' flake.nix
+# Comentar parámetro lanzaboote en el encabezado de outputs
+sed -i 's/\({[^}]*\)lanzaboote,/\1# lanzaboote,/' flake.nix
 
-# Comentar usoLanzaboote en la tabla de hosts
+# Comentar uso del módulo lanzaboote
+sed -i 's/^\([[:space:]]*\)lib\.optional hosts\.\${hostName}\.useLanzaboote lanzaboote\.nixosModules\.lanzaboote/\1# lib.optional hosts.${hostName}.useLanzaboote lanzaboote.nixosModules.lanzaboote/' flake.nix
+
+# Comentar usoLanzaboote = true; en la tabla de hosts
 sed -i 's/\([[:space:]]*useLanzaboote = \)true;/\1false; # originalmente true/' flake.nix
 
 ### PASO 4: Ejecutar disko-install ###
