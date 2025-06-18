@@ -48,6 +48,18 @@ git clone "$REPO_URL" "$FLAKE_PATH"
 
 cd "$FLAKE_PATH"
 
+### PASO 3.5: Comentar todo lo relacionado con lanzaboote ###
+echo "📝 Comentando lanzaboote del flake..."
+
+# Comentar input lanzaboote
+sed -i 's/^\([[:space:]]*\)lanzaboote\(.*\)/\1# lanzaboote\2/' flake.nix
+
+# Comentar usos en la lista de outputs
+sed -i 's/^\([[:space:]]*\)lanzaboote\.nixosModules\.lanzaboote/\1# lanzaboote.nixosModules.lanzaboote/' flake.nix
+
+# Comentar usoLanzaboote en la tabla de hosts
+sed -i 's/\([[:space:]]*useLanzaboote = \)true;/\1false; # originalmente true/' flake.nix
+
 ### PASO 4: Ejecutar disko-install ###
 echo "🧱 Ejecutando disko-install para $FLAKE_ATTR..."
 nix run .#disko-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR" --disk main "$DISK"
@@ -85,17 +97,18 @@ echo "🔁 Re-clonando flake dentro de /mnt/etc/nixos para nixos-install..."
 rm -rf /mnt/etc/nixos/.??* /mnt/etc/nixos/* || true
 git clone "$REPO_URL" /mnt/etc/nixos
 
+### PASO 8.6: Comentar lanzaboote del flake clonado en /mnt/etc/nixos ###
+echo "📝 Comentando lanzaboote en el flake de /mnt/etc/nixos..."
+
+sed -i 's/^\([[:space:]]*\)lanzaboote\(.*\)/\1# lanzaboote\2/' /mnt/etc/nixos/flake.nix
+sed -i 's/^\([[:space:]]*\)lanzaboote\.nixosModules\.lanzaboote/\1# lanzaboote.nixosModules.lanzaboote/' /mnt/etc/nixos/flake.nix
+sed -i 's/\([[:space:]]*useLanzaboote = \)true;/\1false; # originalmente true/' /mnt/etc/nixos/flake.nix
+sed -i 's/\([[:space:]]*outputs = {[^}]*\)lanzaboote,/\1# lanzaboote,/' /mnt/etc/nixos/flake.nix
+
 ### PASO 9: Instalar NixOS ###
 echo "🛠️ Ejecutando nixos-install para $FLAKE_ATTR..."
 cd /mnt/etc/nixos
 nix run .#nixos-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR"
-
-### PASO 10: Asegurar perfil del sistema y rebuild switch final ###
-echo "🔄 Activando el perfil del sistema manualmente (nixos-rebuild switch)..."
-
-# Entrar al entorno de instalación para hacer rebuild y fijar current-system
-nixos-enter --root /mnt --command "nixos-rebuild switch --flake /etc/nixos#$FLAKE_ATTR"
-
 
 echo "✅ Instalación completa de $FLAKE_ATTR. Puedes reiniciar el sistema."
 #sudo chown -R ccaverotx:users /etc/nixos importante, despues para trabajar en etc/nixos
