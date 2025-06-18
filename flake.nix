@@ -67,9 +67,13 @@
             ];
 
             optionalModules =
-              lib.optional hosts.${hostName}.useLanzaboote lanzaboote.nixosModules.lanzaboote
-              ++ lib.optional hosts.${hostName}.useDisko disko.nixosModules.disko
-              ++ lib.optional hosts.${hostName}.useWSL nixos-wsl.nixosModules.wsl;
+                lib.optionals hosts.${hostName}.useLanzaboote [
+                  lanzaboote.nixosModules.lanzaboote
+                  ./modules/security/lanzaboote.nix
+                ]
+                ++ lib.optional hosts.${hostName}.useDisko disko.nixosModules.disko
+                ++ lib.optional hosts.${hostName}.useWSL nixos-wsl.nixosModules.wsl;
+
           in
             baseModules ++ optionalModules;
 
