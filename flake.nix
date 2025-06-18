@@ -30,7 +30,7 @@
       # Aquí defines metadatos por host
       hosts = {
         desktop = {
-          useLanzaboote = true;
+          useLanzaboote = builtins.getEnv "USE_LANZABOOTE" == "1";
           useDisko = true;
           useWSL = false;
         };
