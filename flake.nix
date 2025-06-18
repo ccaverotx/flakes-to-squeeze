@@ -20,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, impermanence, home-manager, disko, nixos-wsl, ... }:
+  outputs = { self, nixpkgs, impermanence, home-manager,lanzaboote, disko, nixos-wsl, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
