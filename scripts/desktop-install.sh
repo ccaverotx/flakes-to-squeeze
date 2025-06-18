@@ -48,21 +48,6 @@ git clone "$REPO_URL" "$FLAKE_PATH"
 
 cd "$FLAKE_PATH"
 
-### PASO 3.5: Comentar todo lo relacionado con lanzaboote ###
-echo "📝 Comentando lanzaboote del flake..."
-
-# Comentar cada línea del bloque lanzaboote = { ... };
-sed -i '/^[[:space:]]*lanzaboote[[:space:]]*=[[:space:]]*{/,/^[[:space:]]*};/s/^/# /' flake.nix
-
-# Comentar parámetro lanzaboote en el encabezado de outputs
-sed -i 's/\({[^}]*\)lanzaboote,/\1# lanzaboote,/' flake.nix
-
-# Comentar uso del módulo lanzaboote
-sed -i 's/^\([[:space:]]*\)lib\.optional hosts\.\${hostName}\.useLanzaboote lanzaboote\.nixosModules\.lanzaboote/\1# lib.optional hosts.${hostName}.useLanzaboote lanzaboote.nixosModules.lanzaboote/' flake.nix
-
-# Comentar usoLanzaboote = true; en la tabla de hosts
-sed -i 's/\([[:space:]]*useLanzaboote = \)true;/\1false; # originalmente true/' flake.nix
-
 ### PASO 4: Ejecutar disko-install ###
 echo "🧱 Ejecutando disko-install para $FLAKE_ATTR..."
 nix run .#disko-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR" --disk main "$DISK"
@@ -100,15 +85,6 @@ echo "🔁 Re-clonando flake dentro de /mnt/etc/nixos para nixos-install..."
 rm -rf /mnt/etc/nixos/.??* /mnt/etc/nixos/* || true
 git clone "$REPO_URL" /mnt/etc/nixos
 
-### PASO 8.6: Comentar lanzaboote del flake clonado en /mnt/etc/nixos ###
-echo "📝 Comentando lanzaboote en el flake de /mnt/etc/nixos..."
-
-sed -i 's/^\([[:space:]]*\)lanzaboote\(.*\)/\1# lanzaboote\2/' /mnt/etc/nixos/flake.nix
-sed -i 's/^\([[:space:]]*\)lanzaboote\.nixosModules\.lanzaboote/\1# lanzaboote.nixosModules.lanzaboote/' /mnt/etc/nixos/flake.nix
-sed -i 's/\([[:space:]]*useLanzaboote = \)true;/\1false; # originalmente true/' /mnt/etc/nixos/flake.nix
-sed -i 's/\([[:space:]]*outputs = {[^}]*\)lanzaboote,/\1# lanzaboote,/' /mnt/etc/nixos/flake.nix
-
-### PASO 9: Instalar NixOS ###
 echo "🛠️ Ejecutando nixos-install para $FLAKE_ATTR..."
 cd /mnt/etc/nixos
 nix run .#nixos-install-"$FLAKE_ATTR" -- --flake .#"$FLAKE_ATTR"
