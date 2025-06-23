@@ -27,6 +27,10 @@ in
       theme.extension
     ];
 
+home.sessionVariables = {
+      OZONE_PLATFORM = "wayland";
+    };
+
     programs.vscode = {
       enable = true;
       extensions = [

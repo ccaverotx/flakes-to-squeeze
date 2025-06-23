@@ -185,121 +185,153 @@
     };
 
     waybarStyle = ''
-      @keyframes blink-warning {
-          70% { color: @light; }
-          to { color: @light; background-color: @warning; }
-      }
+    /* Mechabar Classic adaptado a Nord */
 
-      @keyframes blink-critical {
-          70% { color: @light; }
-          to { color: @light; background-color: @critical; }
-      }
+    @define-color rosewater       #F5E0DC;
+    @define-color flamingo        #F2CDCD;
+    @define-color pink            #F5C2E7;
+    @define-color mauve           #CBA6F7;
+    @define-color red             #BF616A;
+    @define-color maroon          #EBA0AC;
+    @define-color peach           #D08770;
+    @define-color yellow          #EBCB8B;
+    @define-color green           #A3BE8C;
+    @define-color teal            #88C0D0;
+    @define-color sky             #81A1C1;
+    @define-color sapphire        #5E81AC;
+    @define-color blue            #5E81AC;
+    @define-color lavender        #B48EAD;
+    @define-color text            #D8DEE9;
+    @define-color subtext1        #BAC2DE;
+    @define-color subtext0        #A6ADC8;
+    @define-color overlay2        #9399B2;
+    @define-color overlay1        #7F849C;
+    @define-color overlay0        #6C7086;
+    @define-color surface2        #585B70;
+    @define-color surface1        #434C5E;
+    @define-color surface0        #3B4252;
+    @define-color base            #2E3440;
+    @define-color mantle          #2E3440;
+    @define-color crust           #2E3440;
 
-      /* Nord color palette and styles */
-      @define-color bg #2E3440;
-      @define-color light #D8DEE9;
-      @define-color warning #ebcb8b;
-      @define-color critical #BF616A;
-      @define-color mode #434C5E;
-      @define-color workspacesfocused #4C566A;
-      @define-color tray @workspacesfocused;
-      @define-color sound #EBCB8B;
-      @define-color network #5D7096;
-      @define-color memory #546484;
-      @define-color cpu #596A8D;
-      @define-color temp #4D5C78;
-      @define-color layout #5e81ac;
-      @define-color battery #88c0d0;
-      @define-color date #434C5E;
-      @define-color time #434C5E;
-      @define-color backlight #434C5E;
-      @define-color nord_bg #434C5E;
-      @define-color nord_bg_blue #546484;
-      @define-color nord_light #D8DEE9;
-      @define-color nord_light_font #D8DEE9;
-      @define-color nord_dark_font #434C5E;
+    @define-color white           #FFFFFF;
+    @define-color black           #000000;
 
-      * {
-          border: none;
-          border-radius: 3px;
-          min-height: 0;
-          margin: 0.2em 0.3em;
-      }
+    @define-color shadow          shade(@crust, 0.5);
+    @define-color main-fg         @text;
+    @define-color main-bg         @crust;
+    @define-color main-br         @text;
 
-      #waybar {
-          background: @bg;
-          color: @light;
-          font-family: "Cantarell", "Font Awesome 5 Pro";
-          font-size: 12px;
-          font-weight: bold;
-      }
+    @define-color active-bg       @overlay2;
+    @define-color active-fg       @crust;
 
-      #battery, #clock, #cpu, #memory, #network, #pulseaudio, #tray, #backlight {
-          padding-left: 0.6em;
-          padding-right: 0.6em;
-      }
+    @define-color hover-bg        @surface0;
+    @define-color hover-fg        alpha(@text, 0.75);
 
-      #battery.critical.discharging,
-      #memory.critical,
-      #cpu.critical,
-      #temperature.critical {
-          animation-name: blink-critical;
-          animation-duration: 2s;
-          color: @critical;
-      }
+    @define-color module-fg       @text;
+    @define-color workspaces      @mantle;
 
-      #battery.warning.discharging {
-          animation-name: blink-warning;
-          animation-duration: 3s;
-      }
+    @define-color temperature     @mantle;
+    @define-color memory          @base;
+    @define-color cpu             @surface0;
+    @define-color distro-fg       @black;
+    @define-color distro-bg       @overlay2;
+    @define-color time            @surface0;
+    @define-color date            @base;
+    @define-color tray            @mantle;
 
-      #battery.warning,
-      #cpu.warning,
-      #temperature.warning,
-      #network.disconnected {
-          background: @warning;
-          color: @nord_dark_font;
-      }
+    @define-color pulseaudio      @mantle;
+    @define-color backlight       @base;
+    @define-color battery         @surface0;
+    @define-color power           @overlay2;
 
-      #workspaces button {
-          font-weight: bold;
-          opacity: 0.3;
-          background: none;
-          font-size: 1em;
-          padding: 0;
-      }
+    @define-color warning         @yellow;
+    @define-color critical        @red;
+    @define-color charging        @text;
 
-      #workspaces button.focused {
-          background: @workspacesfocused;
-          color: #D8DEE9;
-          opacity: 1;
-          padding: 0 0.4em;
-      }
+    * {
+      border: none;
+      border-radius: 0;
+      font-family: "JetBrainsMono Nerd Font", "Font Awesome 5 Pro", "Font Awesome 6 Free";
+      font-size: 14px;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+    }
 
-      #window {
-          margin: 0 40px;
-          font-weight: normal;
-      }
+    #waybar {
+      background-color: @main-bg;
+      color: @main-fg;
+      border-bottom: 1px solid @main-br;
+      transition: all 0.3s ease;
+    }
 
-      #clock {
-          background: @nord_bg_blue;
-          color: #D8DEE9;
-      }
+    window#waybar {
+      opacity: 0.95;
+    }
 
-      #pulseaudio {
-          background: @nord_bg_blue;
-          color: #D8DEE9;
-      }
+    #workspaces button {
+      padding: 0 6px;
+      color: @module-fg;
+      background: @workspaces;
+      border-radius: 4px;
+      margin-right: 2px;
+    }
 
-      #tray {
-          background: @tray;
-      }
+    #workspaces button.active {
+      background: @active-bg;
+      color: @active-fg;
+    }
 
-      #cpu { background: @nord_bg; color: #D8DEE9; }
-      #memory { background: @memory; }
-      #temperature { background: @nord_bg; }
-      #network { background: @nord_bg_blue; }
-      #battery { background: @battery; }
+    #workspaces button:hover {
+      background: @hover-bg;
+      color: @hover-fg;
+    }
+
+    #clock,
+    #battery,
+    #cpu,
+    #memory,
+    #network,
+    #temperature,
+    #backlight,
+    #pulseaudio,
+    #tray,
+    #custom-media,
+    #custom-weather,
+    #custom-pacman,
+    #custom-cpugovernor,
+    #custom-gpu,
+    #custom-scratchpad-indicator,
+    #idle_inhibitor {
+      padding: 0 10px;
+      margin: 0 4px;
+      border-radius: 4px;
+    }
+
+    #battery.warning,
+    #cpu.warning,
+    #temperature.warning,
+    #network.disconnected {
+      background-color: @warning;
+      color: @black;
+    }
+
+    #battery.critical,
+    #cpu.critical,
+    #temperature.critical {
+      background-color: @critical;
+      color: @white;
+      animation-name: blink-critical;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    @keyframes blink-critical {
+      0% { background-color: @critical; color: @white; }
+      100% { background-color: @main-bg; color: @critical; }
+    }
     '';
   };
 }

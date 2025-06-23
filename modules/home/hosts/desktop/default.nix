@@ -34,6 +34,7 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
     hyprlandTheme.active = theme;
 
     home.packages = with pkgs; [
+      hyprprop
       unzip
       udiskie
       devenv
