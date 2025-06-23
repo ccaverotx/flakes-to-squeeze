@@ -38,6 +38,7 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
       udiskie
       devenv
       distrobox
+      clipse
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
       nerd-fonts.hack

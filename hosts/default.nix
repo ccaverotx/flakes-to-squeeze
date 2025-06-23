@@ -12,19 +12,6 @@ let
     environment.systemPackages = with pkgs; [
       vim git wget pavucontrol sbctl niv
     ];
-    
-    fonts = {
-      enableDefaultPackages = true;
-      packages = with pkgs; [
-        xorg.fontmiscmisc         # contiene 8x13
-        xorg.fontcursormisc       # cursores X11
-        xorg.fontadobe75dpi       # fuentes estilo Helvetica a 75 DPI
-        xorg.fontadobe100dpi      # mismas a 100 DPI
-      ];
-    };
-
-
-
     system.stateVersion = "24.05";
   };
 
@@ -46,36 +33,6 @@ let
     systemd.tmpfiles.rules = [
       "d /etc/nixos 0755 ccaverotx users -"
     ];
-
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-      jack.enable = false;
-    };
-
-    security.rtkit.enable = true;
-
-    xdg.portal = {
-      enable = true;
-      config.common.default = "hyprland";
-      extraPortals = [
-        pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-gtk
-      ];
-    };
-
-    environment.systemPackages = with pkgs; [
-      pipewire
-      wireplumber
-      xdg-utils
-    ];
-
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_TYPE = "wayland";
-    };
   };
 in
 lib.mkMerge [

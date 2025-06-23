@@ -1,7 +1,17 @@
 { pkgs, ... }: {
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+    xdgOpenUsePortal = true;
+
+    config = {
+      common = {
+        default = "hyprland";
+      };
+    };
+
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
   };
 }
