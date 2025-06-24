@@ -10,7 +10,7 @@ let
     i18n.defaultLocale = "en_US.UTF-8";
 
     environment.systemPackages = with pkgs; [
-      vim git wget pavucontrol sbctl niv
+      vim git wget pavucontrol sbctl niv pciutils  unzip htop usbutils wev
     ];
     system.stateVersion = "24.05";
   };

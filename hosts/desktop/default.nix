@@ -18,8 +18,6 @@
   networking.hostName = "desktop";
   networking.hostId = "deadbeef";
 
-  #hyprlandSystem.enable = true;
-
   programs.sway.enable = true;
   greetd.enableSwaySession = true;
 

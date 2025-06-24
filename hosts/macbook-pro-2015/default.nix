@@ -29,15 +29,5 @@
   
   virtualisation.podman.enable = true;
 
-  # Conservamos las utils aquí de momento
-  environment.systemPackages = with pkgs; [
-    unzip
-    htop
-    pciutils
-    usbutils
-    wev
-  ];
-
-  # Necesario para que impermanence funcione correctamente
   fileSystems."/persist".neededForBoot = lib.mkForce true;
 }

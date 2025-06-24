@@ -50,11 +50,11 @@ in
 
     wayland.windowManager.hyprland.settings = activeTheme.hyprlandConfig or {};
 
-    programs.waybar = {
-      enable = true;
-      settings = [ activeTheme.waybarConfig ];
-      style = activeTheme.waybarStyle;
-    };
+    #programs.waybar = {
+    #  enable = true;
+    #  settings = [ activeTheme.waybarConfig ];
+    #  style = activeTheme.waybarStyle;
+    #};
 
     programs.kitty = {
       enable = true;

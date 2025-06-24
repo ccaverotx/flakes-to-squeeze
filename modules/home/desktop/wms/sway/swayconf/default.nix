@@ -3,6 +3,7 @@
 let
   hostType = config.hostType;
   modifier = "Mod1";
+  bar = "waybar";
   terminal = "kitty";
   menu = "wofi --show run";
 in
@@ -12,6 +13,7 @@ builtins.trace ">>> hostType dentro de swayconf/default.nix: ${hostType}" {
   modifier = modifier;
   terminal = terminal;
   menu = menu;
+  bars = [];
 
   input = {
     "*" = {
@@ -55,4 +57,8 @@ builtins.trace ">>> hostType dentro de swayconf/default.nix: ${hostType}" {
     };
   } else 
     builtins.trace "⚠️ hostType desconocido para configuración de outputs: ${hostType}" {};
+
+  startup = [
+    { command = bar; always = true; }
+  ];
 }

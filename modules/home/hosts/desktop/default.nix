@@ -24,14 +24,14 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
       #../../programs/tui-apps/qutebrowser
       ../../desktop/cursor
       ../../desktop/wms/sway
-      # ../../desktop/wms/sway/xdg.nix  ← ya se importa desde sway/default.nix
+      ../../desktop/topbar/waybar
     ];
 
     home.username = "ccaverotx";
     home.homeDirectory = lib.mkForce "/home/ccaverotx";
     home.stateVersion = "24.05";
 
-    hostType = hostType;
+    hostType = hostType;    
 
     home.packages = with pkgs; [
       unzip

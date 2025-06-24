@@ -103,8 +103,8 @@ in
     };
   };
 
-  waybarConfig = waybarTheme.config.waybarConfig;
-  waybarStyle = waybarTheme.config.waybarStyle;
+  #waybarConfig = waybarTheme.config.waybarConfig;
+  #waybarStyle = waybarTheme.config.waybarStyle;
 
   kitty = kitty;
   
