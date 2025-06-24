@@ -21,6 +21,7 @@ builtins.trace ">>> Tema activo en home/hosts/macbook-pro-2015: ${theme}" (
       ../../programs/tui-apps/yazi
       #../../programs/tui-apps/qutebrowser
       ../../desktop/wms/sway
+      ../../desktop/cursor
     ];
 
     home.username = "ccaverotx";

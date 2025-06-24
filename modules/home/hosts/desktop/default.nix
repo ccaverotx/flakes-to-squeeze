@@ -22,6 +22,7 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
       ../../programs/gui-apps/zoom
       ../../programs/tui-apps/yazi
       #../../programs/tui-apps/qutebrowser
+      ../../desktop/cursor
       ../../desktop/wms/sway
       # ../../desktop/wms/sway/xdg.nix  ← ya se importa desde sway/default.nix
     ];
