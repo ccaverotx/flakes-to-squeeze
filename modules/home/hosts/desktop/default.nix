@@ -21,9 +21,9 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
       ../../programs/gui-apps/nemo
       ../../programs/gui-apps/zoom
       ../../programs/tui-apps/yazi
-      ../../programs/tui-apps/qutebrowser
-      ../../desktop/wms/hyprland
-      ../../desktop/wms/hyprland/xdg.nix
+      #../../programs/tui-apps/qutebrowser
+      ../../desktop/wms/sway
+      # ../../desktop/wms/sway/xdg.nix  ← ya se importa desde sway/default.nix
     ];
 
     home.username = "ccaverotx";
@@ -31,10 +31,8 @@ builtins.trace ">>> Tema activo en home/hosts/desktop: ${theme}" (
     home.stateVersion = "24.05";
 
     hostType = hostType;
-    hyprlandTheme.active = theme;
 
     home.packages = with pkgs; [
-      hyprprop
       unzip
       udiskie
       devenv

@@ -6,7 +6,8 @@
     ../../modules/impermanence.nix
     ../../modules/security/polkit.nix
     ../../modules/services/podman
-    ../../modules/home/desktop/wms/hyprland/system.nix
+    ../../modules/services/greetd
+    ../../modules/home/desktop/wms/sway/system.nix
     ../../hardware-configuration.nix
     ../../hosts/macbook-pro-2015/disko.nix
     ../../modules/hardware/bluetooth.nix
@@ -23,7 +24,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  hyprlandSystem.enable = true;
+  programs.sway.enable = true;
+  greetd.enableSwaySession = true;
+  
   virtualisation.podman.enable = true;
 
   # Conservamos las utils aquí de momento

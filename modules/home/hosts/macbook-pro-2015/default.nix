@@ -19,9 +19,8 @@ builtins.trace ">>> Tema activo en home/hosts/macbook-pro-2015: ${theme}" (
       ../../programs/gui-apps/kitty
       ../../programs/gui-apps/nemo
       ../../programs/tui-apps/yazi
-      ../../programs/tui-apps/qutebrowser
-      ../../desktop/wms/hyprland
-      ../../desktop/wms/hyprland/xdg.nix
+      #../../programs/tui-apps/qutebrowser
+      ../../desktop/wms/sway
     ];
 
     home.username = "ccaverotx";
@@ -29,7 +28,7 @@ builtins.trace ">>> Tema activo en home/hosts/macbook-pro-2015: ${theme}" (
     home.stateVersion = "24.05";
 
     hostType = hostType;
-    hyprlandTheme.active = theme;
+    #hyprlandTheme.active = theme;
 
     home.packages = with pkgs; [
       unzip

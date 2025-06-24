@@ -8,6 +8,7 @@
     ../../modules/security/polkit.nix
     ../../modules/security/secure-boot.nix
     ../../modules/services/podman
+    ../../modules/services/greetd
     ../../modules/home/desktop/wms/hyprland/system.nix
     ../../modules/file-systems/zfs.nix
     ../../hardware-configuration.nix
@@ -17,7 +18,10 @@
   networking.hostName = "desktop";
   networking.hostId = "deadbeef";
 
-  hyprlandSystem.enable = true;
+  #hyprlandSystem.enable = true;
+
+  programs.sway.enable = true;
+  greetd.enableSwaySession = true;
 
   secureBoot.enable = true;
   virtualisation.podman.enable = true;
